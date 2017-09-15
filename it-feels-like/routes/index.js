@@ -7,4 +7,9 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+router.get('/welcome', function(req, res, next) {
+
+  res.render('welcome');
+});
+
 module.exports = router;
