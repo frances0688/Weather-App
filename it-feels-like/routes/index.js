@@ -12,4 +12,14 @@ router.get('/welcome', function(req, res, next) {
   res.render('welcome');
 });
 
+router.get('/signup', function(req, res, next) {
+
+  res.render('signup');
+});
+
+router.get('/facebook', function(req, res, next) {
+
+  res.render('signup');
+});
+
 module.exports = router;
