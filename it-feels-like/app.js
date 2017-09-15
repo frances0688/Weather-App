@@ -19,16 +19,6 @@ const app = express();
 mongoose.connect("mongodb://localhost/it-feels-like", {useMongoClient: true });
 
 
-
-// Routes
-const authRoutes = require("./routes/auth-routes");
-app.use('/', authRoutes);
-
-const index = require('./routes/index');
-const users = require('./routes/users');
-
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -36,12 +26,10 @@ app.set('layout', 'layouts/main-layout');
 app.use(expressLayouts);
 
 
-
 app.use(session({
   secret: 'spiceupyourlife',
   resave: false,
   saveUninitialized: true,
-  store: new MongoStore( { mongooseConnection: mongoose.connection })
 }));
 
 configPassport(passport);
@@ -65,8 +53,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Routes
+const authRoutes = require("./routes/auth-routes");
+const index = require('./routes/index');
+const users = require('./routes/users');
+
 app.use('/', index);
 app.use('/users', users);
+app.use('/', authRoutes);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
