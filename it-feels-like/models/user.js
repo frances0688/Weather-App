@@ -8,7 +8,9 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   preferences: { type: Preferences, required: true }
 }, {
-  timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
+  timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+
+  facebookId: { type: String }
 });
 
 const User = mongoose.model("User", userSchema);
