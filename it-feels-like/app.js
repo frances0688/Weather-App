@@ -12,7 +12,9 @@ const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const configPassport     = require('./config/passport');
+const User               = require("../models/user");
 
+const app = express();
 
 mongoose.connect("mongodb://localhost/it-feels-like");
 
@@ -22,10 +24,10 @@ mongoose.connect("mongodb://localhost/it-feels-like");
 const authRoutes = require("./routes/auth-routes");
 app.use('/', authRoutes);
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+const index = require('./routes/index');
+const users = require('./routes/users');
 
-var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,7 +42,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
 configPassport(passport);
 app.use(passport.initialize());
