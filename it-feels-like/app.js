@@ -12,11 +12,11 @@ const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const configPassport     = require('./config/passport');
-const User               = require("../models/user");
+const User               = require("./models/user");
 
 const app = express();
 
-mongoose.connect("mongodb://localhost/it-feels-like");
+mongoose.connect("mongodb://localhost/it-feels-like", {useMongoClient: true });
 
 
 

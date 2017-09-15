@@ -1,9 +1,6 @@
 const express = require("express");
 const authRoutes = express.Router();
 
-// routes/auth-routes.js
-const express = require("express");
-const authRoutes = express.Router();
 
 // User model
 const User = require("../models/user");
