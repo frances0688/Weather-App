@@ -3,14 +3,10 @@ const authRoutes = express.Router();
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-app.get('/facebook',
-  passport.authenticate('facebook'));
-
-app.get('/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/welcome' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
+authRoutes.get("/facebook", passport.authenticate("facebook"));
+authRoutes.get("/facebook/callback", passport.authenticate("facebook", {
+  successRedirect: "/user",
+  failureRedirect: "/welcome"
+}));
 
 module.exports = authRoutes;
