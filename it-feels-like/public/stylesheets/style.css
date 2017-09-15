@@ -7,8 +7,6 @@ a {
   color: #00B7FF;
 }
 
-.conversation-box {
-  width: 300;
-  height: 300;
-  background-color: #FFE1E1;
+#my-form-element {
+  height: 100vh;
 }
