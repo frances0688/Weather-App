@@ -2,6 +2,7 @@
 
 // load all the things we need
 const LocalStrategy = require('passport-local').Strategy;
+const FbStrategy      = require('passport-facebook').Strategy;
 
 // load up the user model
 const User = require('../models/user');
@@ -75,8 +76,8 @@ module.exports = (passport) => {
   }));
 
   passport.use(new FbStrategy({
-  clientID: 502415123447256,
-  clientSecret: c79591bdbc553739f926d9c2037b591e,
+  clientID: '502415123447256',
+  clientSecret: 'c79591bdbc553739f926d9c2037b591e',
   callbackURL: "/facebook/callback"
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ facebookID: profile.id }, (err, user) => {

@@ -17,9 +17,11 @@ router.get('/signup', function(req, res, next) {
   res.render('signup');
 });
 
-router.get('/facebook', function(req, res, next) {
+router.get('/user', function(req, res, next) {
 
-  res.render('signup');
+  res.render('user');
 });
+
+
 
 module.exports = router;
