@@ -1,9 +1,18 @@
 
 <h1>Welcome screen where we have the conversational form...</h1>
 
-<div cf-context class="conversation-box">
-  <form action="/welcome" id="my-form-element" cf-form cf-prevent-autofocus>
-    <input type="text" cf-questions="What is your firstname?">
-    <input type="text" cf-questions="Hello {previous-answer}, what is your lastname?">
+<div class="conversation-box">
+  <form action="/welcome" id="my-form-element">
+    
+    <label for=name>Hi what's your name?</label><br>
+    <input id="name" name="name" type="text" placeholder="Jennie"><br>
+    <br>
+    <label for=name>What do you want to do?</label><br>
+    <input type="radio" name="choice" value="Login with facebook">Login with FB<br>
+    <input type="radio" name="choice" value="Login">Login<br>
+    <input type="radio" name="choice" value="Signup">Sign Up<br>
+    <br>
+
+
   </form>
 </div>
