@@ -8,6 +8,7 @@ const mongoose        = require('mongoose');
 const expressLayouts  = require('express-ejs-layouts');
 const passport        = require('passport');
 const LocalStrategy   = require('passport-local').Strategy;
+const FbStrategy      = require('passport-facebook').Strategy;
 const bcrypt          = require('bcrypt');
 const session         = require('express-session');
 const MongoStore      = require('connect-mongo')(session);
