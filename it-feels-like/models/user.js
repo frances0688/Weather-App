@@ -6,11 +6,10 @@ const userSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  preferences: { type: Preferences, required: true }
-}, {
-  timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
-
+  preferences: { type: Schema.Types.ObjectId, ref: 'Preferences'},
   facebookId: { type: String }
+}, {
+  timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
 
 const User = mongoose.model("User", userSchema);
