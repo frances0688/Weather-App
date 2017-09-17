@@ -1,1 +1,22 @@
-<h1>Sign up conversation goes here.</h1>
+
+<h2>Signup</h2>
+
+<form action="/signup" method="POST" id="form-container">
+  <label for="name">Name</label>
+  <input id="name" type="text" name="name" placeholder="Jennie">
+  <br><br>
+  <label for="email">Email</label>
+  <input id="email" type="email" name="email" placeholder="jennie@jennie.com">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Create account</button>
+
+
+</form>

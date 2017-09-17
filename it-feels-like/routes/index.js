@@ -12,10 +12,7 @@ router.get('/welcome', function(req, res, next) {
   res.render('welcome');
 });
 
-router.get('/signup', function(req, res, next) {
 
-  res.render('signup');
-});
 
 router.get('/user', function(req, res, next) {
 
