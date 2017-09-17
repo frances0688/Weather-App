@@ -2,12 +2,12 @@
 <h1>Welcome screen where we have the conversational form...</h1>
 
 
-
-<form id="my-form-element" method="POST" cf-form>
+<form id="my-form-element" cf-form>
 
   <!-- Initial Conversation -->
   <fieldset cf-questions="Hi there! What do you want to do?">
-  	<input type="radio" name="wth-intro" id="login-facebook" value="facebook">
+  	<input type="radio" name="wth-intro" id="login-facebook" value="facebook" formmethod="POST"
+        formaction="/facebook">
   	<label for="login-facebook">Login with Facebook</label>
 
   	<input type="radio" name="wth-intro" id="login-email" value="email">
@@ -59,23 +59,28 @@
   	cf-questions="What is your email?" />
 
   <input
+    formmethod="POST"
+    formaction="/login"
   	type="password"
   	id="password"
   	name="password"
   	cf-conditional-wth-intro="email"
   	cf-questions="Please enter your password"/>
 
-  <input type="submit" id="login-submit" name="login-submit" formaction="/login">
 
 
-  <!--Path 3: Facebook login-->
+
+  <!--Path 3: Facebook login
   <input
   	type="text"
   	id="facebook-success"
   	name="facebook-success"
   	cf-conditional-wth-intro="facebook"
-  	cf-questions="You've chosen login with Facebook"/>
-  <input type="submit" id="fb-submit" name="fb-submit" formaction="/">
+  	cf-questions="You've chosen login with Facebook"
+    formmethod="POST"
+    formaction="/facebook"
+     />
+-->
 
 
   </form>
