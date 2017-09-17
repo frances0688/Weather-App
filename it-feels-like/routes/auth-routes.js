@@ -7,7 +7,7 @@ const passport   = require('passport');
 //THE FACEBOOK LOGIN
 authRoutes.get("/facebook", passport.authenticate("facebook"));
 authRoutes.get("/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/welcome",
+  successRedirect: "/user",
   failureRedirect: "/error"
 }));
 
@@ -46,7 +46,7 @@ authRoutes.post("/signup", (req, res, next) => {
       if (err) {
         res.render("signup", { message: "Something went wrong" });
       } else {
-        res.redirect("login");
+        res.redirect("/login");
       }
     });
   });
@@ -59,12 +59,11 @@ authRoutes.get("/login", (req, res, next) => {
 
 //DO THE LOGIN
 authRoutes.post("/login", passport.authenticate("local", {
-  successRedirect: "/welcome",
+  successRedirect: "/user",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
 }));
-
 
 
 

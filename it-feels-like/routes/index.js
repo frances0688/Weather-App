@@ -12,12 +12,13 @@ router.get('/welcome', function(req, res, next) {
   res.render('welcome');
 });
 
-
-
 router.get('/user', function(req, res, next) {
 
   res.render('user');
 });
+
+
+
 
 
 
