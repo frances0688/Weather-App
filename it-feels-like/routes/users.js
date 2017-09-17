@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+
 //GET TO THE SIGN UP PAGE
 router.get("/signup", (req, res, next) => {
   res.render("signup");
@@ -53,6 +54,6 @@ router.post("/signup", (req, res, next) => {
 
 router.get('/:id', function(req, res, next) {
 
-})
+});
 
 module.exports = router;
