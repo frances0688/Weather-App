@@ -3,13 +3,12 @@ const authRoutes = express.Router();
 const bcrypt     = require("bcrypt");
 const bcryptSalt = 10;
 const passport   = require('passport');
+const User = require("../models/user");
 
 //THE FACEBOOK LOGIN
-authRoutes.get("/facebook", passport.authenticate("facebook"));
-authRoutes.get("/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/user",
-  failureRedirect: "/error"
-}));
+authRoutes.get('/facebook', passport.authenticate('facebook', {scope:"email"}));
+authRoutes.get('/facebook/callback', passport.authenticate('facebook', 
+{ successRedirect: '/user', failureRedirect: '/login' }));
 
 //GET TO THE LOGIN PAGE
 authRoutes.get("/login", (req, res, next) => {
