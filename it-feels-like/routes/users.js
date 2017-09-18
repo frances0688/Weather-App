@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
-const passport   = require('passport');
+const passport = require('passport');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -11,12 +11,12 @@ router.get('/', function(req, res, next) {
 });
 
 //GET TO THE SIGN UP PAGE
-authRoutes.get("/signup", (req, res, next) => {
+router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
 
 //DO THE SIGN UP AND SAVE TO DB
-authRoutes.post("/signup", (req, res, next) => {
+router.post("/signup", (req, res, next) => {
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
@@ -51,8 +51,5 @@ authRoutes.post("/signup", (req, res, next) => {
   });
 });
 
-router.get('/:id', function(req, res, next) {
-
-})
 
 module.exports = router;

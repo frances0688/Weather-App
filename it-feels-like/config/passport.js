@@ -2,7 +2,7 @@
 
 // load all the things we need
 const LocalStrategy = require('passport-local').Strategy;
-const FbStrategy      = require('passport-facebook').Strategy;
+const FbStrategy = require('passport-facebook').Strategy;
 
 // load up the user model
 const User = require('../models/user');
@@ -78,28 +78,28 @@ module.exports = (passport) => {
   passport.use(new FbStrategy({
   clientID: '502415123447256',
   clientSecret: 'c79591bdbc553739f926d9c2037b591e',
-  callbackURL: "/facebook/callback"
-}, (accessToken, refreshToken, profile, done) => {
-  User.findOne({ facebookID: profile.id }, (err, user) => {
-    if (err) {
-      return done(err);
-    }
-    if (user) {
-      return done(null, user);
-    }
+  callbackURL: "/facebook/callback",
+  profileFields:['id','displayName','emails']
+    }, function(accessToken, refreshToken, profile, done) {
+        console.log(profile);
+        var me = new User({
+            email:profile.emails[0].value,
+            name:profile.displayName
+        });
 
-    const newUser = new User({
-      facebookID: profile.id
-    });
-
-    newUser.save((err) => {
-      if (err) {
-        return done(err);
-      }
-      done(null, newUser);
-    });
-  });
-
-}));
-
+        /* save if new */
+        User.findOne({email:me.email}, function(err, u) {
+            if(!u) {
+                me.save(function(err, me) {
+                    if(err) return done(err);
+                    done(null,me);
+                });
+            } else {
+                console.log(u);
+                done(null, u);
+            }
+        });
+  }
+));
 };
+

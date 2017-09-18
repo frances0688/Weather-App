@@ -7,7 +7,7 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String },
   preferences: { type: Schema.Types.ObjectId, ref: 'Preferences'},
-  facebookId: { type: String }
+  facebookID: { type: String }
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
