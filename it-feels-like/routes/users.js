@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
-const passport   = require('passport');
+const passport = require('passport');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -50,16 +50,6 @@ router.post("/signup", (req, res, next) => {
       }
     });
   });
-});
-
-router.get('/:id', (req, res, next)=> {
-
-});
-
-router.post('preferences', (req, res, next)=>{
-  const sun = req.body.sun;
-  const email = req.body.email;
-  const password = req.body.password;
 });
 
 
