@@ -3,7 +3,7 @@ const authRoutes = express.Router();
 const bcrypt     = require("bcrypt");
 const bcryptSalt = 10;
 const passport   = require('passport');
-const User = require("../models/user");
+const User = require('../models/user');
 
 //THE FACEBOOK LOGIN
 authRoutes.get('/facebook', passport.authenticate('facebook', {scope:"email"}));

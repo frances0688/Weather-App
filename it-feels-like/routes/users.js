@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+
 //GET TO THE SIGN UP PAGE
 router.get("/signup", (req, res, next) => {
   res.render("signup");
@@ -26,7 +27,7 @@ router.post("/signup", (req, res, next) => {
     return;
   }
 
-  User.findOne({ email }, "email", (err, email) => {
+  User.findOne({}, (err, email) => {
     if (email !== null) {
       res.render("signup", { message: "The email already exists" });
       return;
