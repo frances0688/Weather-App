@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+var expressValidator = require('express-validator');
+router.use(expressValidator())
 const User = require('../models/user');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
@@ -21,14 +23,27 @@ router.post("/signup", (req, res, next) => {
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
+  const password2 = req.body.password2;
+  
+  // Validation
+  req.checkBody('name', { message:'Name is required'}).notEmpty(),
+    req.checkBody('email', { message:'Email is required'}).notEmpty(),
+  // req.checkBody('email', { message:'Email is not valid'}).isEmail(),
+  req.checkBody('password', { message:'Password is required'}).notEmpty(),
+  req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password),
 
-  if (name === "" || password === "" || email === "") {
-    res.render("signup", { message: "Fill in all the fields" });
-    return;
+  errors = req.validationErrors();
+
+  if (errors){
+    res.render ('signup',{
+        errors: errors
+    });
+  }else {
+    console.log('Passed')
   }
 
-  User.findOne({}, (err, email) => {
-    if (email !== null) {
+  User.findOne({email}, (err, foo) => {
+    if (foo !== null) {
       res.render("signup", { message: "The email already exists" });
       return;
     }
@@ -46,11 +61,13 @@ router.post("/signup", (req, res, next) => {
       if (err) {
         res.render("signup", { message: "Something went wrong" });
       } else {
-        res.redirect("login");
+        res.redirect("preferences");
       }
     });
-  });
-});
+  })
+})
 
 
 module.exports = router;
+
+
