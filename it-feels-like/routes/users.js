@@ -3,10 +3,11 @@ const router = express.Router();
 var expressValidator = require('express-validator');
 router.use(expressValidator())
 const User = require('../models/user');
+const Preferences = require('../models/preferences');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 const passport = require('passport');
-
+const $ = require('jQuery');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -67,6 +68,33 @@ router.post("/signup", (req, res, next) => {
   })
 })
 
+//SAVE PREFERENCES TO DB
+router.post("/preferences", (req, res, next) => {
+  const hotTemp = req.body.hot;
+  const idealTemp = req.body.cold;
+  const coldTemp = req.body.ideal;
+
+  // const sun = document.querySelector('input[name="sun"]:checked').value;
+  const sun = $('input[name="sun"]:checked').val();
+
+
+
+  const newPreferences =  new Preferences({
+    hotTemp,
+    idealTemp,
+    coldTemp,
+    sun
+  });
+
+  newPreferences.save((err) => {
+    if (err) {
+      res.render("preferences", { message: "Something went wrong" });
+    } else {
+      res.redirect("user");
+    }
+  });
+
+});
 
 module.exports = router;
 
