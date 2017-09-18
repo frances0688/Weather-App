@@ -11,6 +11,7 @@ router.get('/welcome', function(req, res, next) {
 });
 
 router.get('/user', function(req, res, next) {
+  console.log("session",req.session);
   res.render('user');
 });
 

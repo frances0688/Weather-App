@@ -28,8 +28,8 @@ router.post("/signup", (req, res, next) => {
   
   // Validation
   req.checkBody('name', { message:'Name is required'}).notEmpty(),
-    req.checkBody('email', { message:'Email is required'}).notEmpty(),
-  // req.checkBody('email', { message:'Email is not valid'}).isEmail(),
+  req.checkBody('email', { message:'Email is required'}).notEmpty(),
+  req.checkBody('email', { message:'Email is not valid'}).isEmail(),
   req.checkBody('password', { message:'Password is required'}).notEmpty(),
   req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password),
 
@@ -43,8 +43,8 @@ router.post("/signup", (req, res, next) => {
     console.log('Passed')
   }
 
-  User.findOne({email}, (err, foo) => {
-    if (foo !== null) {
+  User.findOne({email}, (err, user) => {
+    if (user !== null) {
       res.render("signup", { message: "The email already exists" });
       return;
     }
@@ -58,12 +58,13 @@ router.post("/signup", (req, res, next) => {
       password: hashPass
     });
 
-    newUser.save((err) => {
-      if (err) {
-        res.render("signup", { message: "Something went wrong" });
+    newUser.save(function(error) {
+      if (error) {
+            res.render("signup", { message: "Something went wrong" });
       } else {
-        res.redirect("preferences");
-      }
+          User.find({}).populate('preferences')
+          res.redirect("preferences")
+        }
     });
   })
 })
@@ -75,24 +76,34 @@ router.post("/preferences", (req, res, next) => {
   const coldTemp = req.body.ideal;
 
   // const sun = document.querySelector('input[name="sun"]:checked').value;
-  const sun = $('input[name="sun"]:checked').val();
+  // const sun = $('input[name="sun"]:checked').val();
 
 
-
+  const currentUserId = req.session.passport.user;
   const newPreferences =  new Preferences({
     hotTemp,
     idealTemp,
     coldTemp,
-    sun
+    // sun
   });
+  
+  // Update user object with attached preferences
+  User.findByIdAndUpdate(currentUserId, {
+    $set: {preferences : newPreferences}}, (err, userFound) => {
+      if (err) {
+        return next(err);
+      }
+      console.log(userFound);
+      res.redirect('/user');
+    });
 
-  newPreferences.save((err) => {
-    if (err) {
-      res.render("preferences", { message: "Something went wrong" });
-    } else {
-      res.redirect("user");
-    }
-  });
+  // newPreferences.save((err) => {
+  //   if (err) {
+  //     res.render("preferences", { message: "Something went wrong" });
+  //   } else {
+  //     res.redirect("user");
+  //   }
+  // });
 
 });
 
