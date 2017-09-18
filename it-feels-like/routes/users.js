@@ -52,8 +52,15 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', (req, res, next)=> {
 
 });
+
+router.post('preferences', (req, res, next)=>{
+  const sun = req.body.sun;
+  const email = req.body.email;
+  const password = req.body.password;
+});
+
 
 module.exports = router;
