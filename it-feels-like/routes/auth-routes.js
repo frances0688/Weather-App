@@ -1,13 +1,16 @@
-const express    = require("express");
-const authRoutes = express.Router();
-const bcrypt     = require("bcrypt");
-const bcryptSalt = 10;
-const passport   = require('passport');
-const User = require('../models/user');
+const express       = require("express");
+const authRoutes    = express.Router();
+const bcrypt        = require("bcrypt");
+const bcryptSalt    = 10;
+const passport      = require('passport');
+const User          = require('../models/user');
+const LocalStrategy = require('passport-local').Strategy;
+
+
 
 //THE FACEBOOK LOGIN
 authRoutes.get('/facebook', passport.authenticate('facebook', {scope:"email"}));
-authRoutes.get('/facebook/callback', passport.authenticate('facebook', 
+authRoutes.get('/facebook/callback', passport.authenticate('facebook',
 { successRedirect: '/user', failureRedirect: '/login' }));
 
 //GET TO THE LOGIN PAGE
@@ -16,15 +19,8 @@ authRoutes.get("/login", (req, res, next) => {
 });
 
 //DO THE LOGIN
-authRoutes.post("/login", passport.authenticate("local", {
-  successRedirect: "/user",
-  failureRedirect: "/login",
-  failureFlash: true,
-  passReqToCallback: true
-}));
-
-
-
+authRoutes.post('/login', passport.authenticate('local-login',
+{ successRedirect: '/user', failureRedirect: '/login' }));
 
 
 module.exports = authRoutes;
