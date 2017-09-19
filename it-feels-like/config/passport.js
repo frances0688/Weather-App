@@ -29,13 +29,13 @@ module.exports = (passport) => {
     });
   });
 
-  passport.use('local-login', new LocalStrategy((username, password, next) => {
-      User.findOne({ username }, (err, user) => {
+  passport.use('local-login', new LocalStrategy((email, password, next) => {
+      User.findOne({ email }, (err, user) => {
           if (err) {
           return next(err);
           }
           if (!user) {
-          return next(null, false, { message: "Incorrect username" });
+          return next(null, false, { message: "Incorrect email" });
           }
           if (!bcrypt.compareSync(password, user.password)) {
           return next(null, false, { message: "Incorrect password" });
@@ -47,22 +47,22 @@ module.exports = (passport) => {
 
   passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
-  (req, username, password, next) => {
+  (req, email, password, next) => {
       process.nextTick(() => {
           User.findOne({
-              'username': username
+              'email': email
           }, (err, user) => {
               if (err){ return next(err); }
 
               if (user) {
                   return next(null, false);
               } else {
-                  const { username, email, description, password } = req.body;
+                  const { name, email, preferences, password } = req.body;
                   const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                   const newUser = new User({
-                  username,
+                  name,
                   email,
-                  description,
+                  preferences,
                   password: hashPass
                   });
 

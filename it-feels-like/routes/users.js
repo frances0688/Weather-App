@@ -81,10 +81,6 @@ router.post("/preferences", (req, res, next) => {
   const wind = req.body.wind;
 
 
-  // const sun = document.querySelector('input[name="sun"]:checked').value;
-  // const sun = $('input[name="sun"]:checked').val();
-
-
   const currentUserId = req.session.passport.user;
   const newPreferences =  new Preferences({
     hotTemp,
@@ -107,14 +103,6 @@ router.post("/preferences", (req, res, next) => {
       console.log(userFound);
       res.redirect('/user');
     });
-
-  // newPreferences.save((err) => {
-  //   if (err) {
-  //     res.render("preferences", { message: "Something went wrong" });
-  //   } else {
-  //     res.redirect("user");
-  //   }
-  // });
 
 });
 
