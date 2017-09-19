@@ -23,10 +23,10 @@ module.exports = (passport) => {
   });
 
   passport.deserializeUser((id, cb) => {
-  User.findById(id, (err, user) => {
-      if (err) { return cb(err); }
-      cb(null, user);
-  });
+    User.findById(id, (err, user) => {
+        if (err) { return cb(err); }
+        cb(null, user);
+    });
   });
 
   passport.use('local-login', new LocalStrategy((username, password, next) => {
