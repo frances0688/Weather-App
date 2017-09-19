@@ -10,7 +10,7 @@ var mylong;
             lat: position.coords.latitude,
             long: position.coords.longitude
           };
-      $('#data').html(`latitude: ${userLocation.lat} longitude: ${userLocation.long}`);
+      $('#location').html(`latitude: ${userLocation.lat} <br> longitude: ${userLocation.long}`);
       mylat = userLocation.lat;
       mylong = userLocation.long;
 

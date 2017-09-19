@@ -1,12 +1,114 @@
+/*
+font-family: 'Heebo', sans-serif;
+font-family: 'Cabin', sans-serif;
+font-family: 'Montserrat', sans-serif;
+*/
+
+*, *:after, *:before{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
-a {
-  color: #00B7FF;
+#my-signup-element {
+    height: 100vh;
 }
 
-#my-form-element {
+#my-login-element {
+    height: 100vh;
+}
+
+#preferences-form-element {
   height: 100vh;
+}
+
+.index-wrapper {
+  /*position: relative;*/
+  padding-top: 30%;
+  height: 100vh;
+  width: 100vw;
+  background: #0752EA; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient( #0752EA , #0FABDA); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#0752EA, #0FABDA); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient( #0752EA, #0FABDA); /* For Firefox 3.6 to 15 */
+  background: linear-gradient( #0752EA , #0FABDA); /* Standard syntax */
+}
+
+ h1 {
+
+  font-size: 70px;
+  line-height: 70px;
+  margin-left: 10%;
+  color: white;
+  text-shadow: 2px 2px 4px black;
+}
+
+.button-wrapper {
+  /*position: absolute;*/
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin-top: 50%;
+
+}
+
+.button-wrapper a {
+  padding: 10px;
+  width: 200px;
+  background-color: white;
+  text-decoration: none;
+  color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.user-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 20%;
+  height: 100vh;
+  width: 100vw;
+  background: #FF0055; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient( #FF0055 , #FFCD00); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#FF0055, #FFCD00); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient( #FF0055, #FFCD00); /* For Firefox 3.6 to 15 */
+  background: linear-gradient( #FF0055 , #FFCD00); /* Standard syntax */
+}
+
+.user-wrapper p {
+  margin: 10%;
+}
+
+#location {
+  font-size: 16px;
+  padding-left: 10%;
+  height: 30px;
+}
+
+#data {
+  font-size: 16px;
+  height: 50px;
+  margin-top: 10%;
+  padding-left: 10%;
+}
+
+#dataBtn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  width: 150px;
+  margin-top: 30%;
+  background-color: white;
+  border: none;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  align-self: center;
 }
