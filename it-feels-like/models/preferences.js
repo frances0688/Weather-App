@@ -4,11 +4,11 @@ const User = require('./user');
 
 
 const preferencesSchema = new Schema({
-  // sun: { type: Number, required: true },
-  // rain: { type: Number, required: true },
-  // clouds: { type: Number, required: true },
-  // snow: { type: Number, required: true },
-  // wind: { type: Number, required: true },
+  sun: { type: Number, required: true },
+  rain: { type: Number, required: true },
+  clouds: { type: Number, required: true },
+  snow: { type: Number, required: true },
+  wind: { type: Number, required: true },
   hotTemp: { type: Number, required: true },
   idealTemp: { type: Number, required: true },
   coldTemp: { type: Number, required: true },
