@@ -17,7 +17,6 @@ router.get('/user', function(req, res, next) {
 
 router.get('/preferences', function(req, res, next) {
   res.render('preferences');
-  initExample();
 });
 
 

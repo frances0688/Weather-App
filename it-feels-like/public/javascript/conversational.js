@@ -29,7 +29,7 @@ function addRandomClick(){
 				"I’m done!"];
 			let transcriptIndex = 0;
 			function robotStartsTalkingToItself(){
-				var next = transcript[transcriptIndex]
+				var next = transcript[transcriptIndex];
 				window.ConversationalForm.addRobotChatResponse(next);
 				transcriptIndex++;
 				if(transcriptIndex < transcript.length){
