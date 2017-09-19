@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
-
+const Preferences = require('./preferences');
 
 const userSchema = new Schema({
-  name: { type: String},
+  name: { type: String },
   email: { type: String, required: true },
   password: { type: String },
-  preferences: { type: Schema.Types.ObjectId, ref: 'Preferences'},
+  preferences: { type: Preferences.schema },
   facebookID: { type: String }
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
