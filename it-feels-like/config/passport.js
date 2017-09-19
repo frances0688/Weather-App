@@ -57,39 +57,38 @@ module.exports = (passport) => {
 
 
     passport.use('local-signup', new LocalStrategy({
-            userNameField: 'email',    
+            usernameField: 'email',    
             passReqToCallback: true 
         },
         (req, name, email, password, password2, next) => {
-            
-            console.log('hell');
-            // User.findOne({'email': email}, (err, user) => {
-            //     if (err) {
-            //         return next(err);
-            //     }
-            //     if (user) {
-            //         return next(null, false);
-            //     }
-            //     // Validation
+            console.log("fields", name, email, password, password2);
+            User.findOne({email}, (err, user) => {
+                if (err) {
+                    return next(err);
+                }
+                if (user) {
+                    return next(null, false);
+                }
+                // Validation
 
-            //     const salt      = bcrypt.genSaltSync(bcryptSalt);
-            //     const hashPass  = bcrypt.hashSync(password, salt);
-            //     const newUser   = new User({
-            //         name: req.body.name,
-            //         email: req.body.email,
-            //         password: hashPass
-            //     });
+                const salt      = bcrypt.genSaltSync(bcryptSalt);
+                const hashPass  = bcrypt.hashSync(password, salt);
+                const newUser   = new User({
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: hashPass
+                });
 
-            //     newUser.save(function(error) {
-            //         if (error) {
-            //             res.render("signup", { message: "Something went wrong" });
-            //         } else {
-            //             res.redirect("preferences")
-            //         }
-            //     });
+                newUser.save(function(error) {
+                    if (error) {
+                        res.render("signup", { message: "Something went wrong" });
+                    } else {
+                        res.redirect("/preferences")
+                    }
+                });
         })
-        
-    );
+    }
+    ));
         //     User.findOne({'email': email}, (err, user) => {
         //         if (err) {
         //             return next(err);

@@ -62,8 +62,8 @@ app.use( (req, res, next) => {
 const authRoutes = require("./routes/auth-routes");
 const index = require('./routes/index');
 const users = require('./routes/users');
-app.use('/', authRoutes);
 
+app.use('/', authRoutes);
 app.use('/', index);
 app.use('/', users);
 // app.use('/', passportRoutes);
