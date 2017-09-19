@@ -24,11 +24,10 @@
 
 
   <fieldset cf-questions="Do you like the rain?">
-    <input type="radio" name="rain" value="1">
-    <label for="rain-yes">yes</label><br>
-
+    <input type="radio" name="rain" id="rain-yes" value="1">
+    <label for="rain-yes">yes</label>
     <input type="radio" name="rain" value="-1">
-    <label for="rain-no">no</label><br>
+    <label for="rain-no">no</label>
 
     <input type="radio" name="rain" value="0">
     <label for="rain-dontcare">I don't care</label><br>
@@ -75,7 +74,7 @@
 
 
     <input type="text" id="hot" name="hot" placeholder="30" cf-questions="How hot is too hot for you?"/><span>°C</span>
-    
+
     <input type="text" id="cold" name="cold" placeholder="-10"cf-questions="How cold is too cold for you?"/><span>°C</span>
 
     <input type="text" id="ideal" name="ideal" placeholder="16"cf-questions="What's your ideal temperature?"/><span>°C</span>
