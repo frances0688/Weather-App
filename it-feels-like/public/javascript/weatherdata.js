@@ -59,6 +59,7 @@ var mylong;
   // };
 
   $('#dataBtn').on('click', (e) => {
+    closeNav();
     getDataByCoordinates();
   });
 

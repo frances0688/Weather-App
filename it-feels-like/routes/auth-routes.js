@@ -11,7 +11,7 @@ const LocalStrategy = require('passport-local').Strategy;
 //THE FACEBOOK LOGIN
 authRoutes.get('/facebook', passport.authenticate('facebook', {scope:"email"}));
 authRoutes.get('/facebook/callback', passport.authenticate('facebook',
-{ successRedirect: '/user', failureRedirect: '/login' }));
+{ successRedirect: '/preferences', failureRedirect: '/login' }));
 
 //GET TO THE LOGIN PAGE
 authRoutes.get("/login", (req, res, next) => {

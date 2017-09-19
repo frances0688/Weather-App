@@ -1,11 +1,29 @@
 <div class="user-wrapper">
 
+<div id="menu" onclick="openNav()"></div>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/user" onclick="closeNav()">Today</a>
+    <a href="#" id="dataBtn">Data</a>
+    <a href="/preferences" onclick="closeNav()">Settings</a>
+    <a href="#" onclick="closeNav()">Logout</a>
+  </div>
+
+
+
+
+
+
+
+
+
   <h1>The User Page</h1>
 
   <p>Your location is:</p>
   <div id="location"></div>
 
   <div id="data"></div>
-  <button id="dataBtn">Show data</button>
+
 
 </div>

@@ -101,14 +101,63 @@ body {
   padding-left: 10%;
 }
 
-#dataBtn {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  width: 150px;
-  margin-top: 30%;
-  background-color: white;
-  border: none;
-  padding: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  align-self: center;
+
+/**********RESPONSIVE FOR IPAD  WIDTH: 764PX HEIGHT: 1024P*********/
+@media all and (min-width: 700px) {
+
+}
+/*********RESPONSIVE FOR DESKTOP WIDTH: MIN-850PX HEIGHT: 1024PX********/
+@media all and (min-width: 1100px) {
+
+}
+
+
+
+
+
+#menu {
+  margin-top: -50px;
+  margin-left: 20px;
+  height: 30px;
+  width: 40px;
+  background-repeat: no-repeat;
+  background-image: url('../images/menu-icon.png');
+}
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%;
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: rgba(30, 30, 30, 0.85);
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #FFCD00;
+    display: block;
+    transition: 0.3s
+}
+
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
