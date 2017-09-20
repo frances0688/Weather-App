@@ -3,7 +3,7 @@ $(document).ready(()=>{
 var mylat;
 var mylong;
 
-
+  //This is to get the geolocation. We need to change this to be more accurate. Use google maps api?
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       const userLocation = {
@@ -20,8 +20,10 @@ var mylong;
       const coordinates = 'lat='+mylat+'&lon='+mylong+'&cnt=10';
       const celcius = '&units=metric';
 
+      const api = apistart + coordinates + appid + celcius;
+
+      //This is to get the data from API according to user location
       getDataByCoordinates = ()=> {
-        const api = apistart + coordinates + appid + celcius;
 
         $.getJSON(api, (data)=>{
           $('#data').html(`It's ${data.weather[0].description} in ${data.name}!
@@ -35,28 +37,30 @@ var mylong;
 
 
 
+
+//Function to check if temp is higher or lower than user prefers
+//And send a message according to that
+      messageToday = ()=> {
+        console.log('messageToday functon is called');
+
+        $.getJSON(api, (data)=>{
+
+          if (data.main.temp > userFront.idealTemp){
+          $('#today').html("It's too hot for you today! Stay inside");
+          }
+          else {$('#today').html("You might think its too cold today.");}
+
+        });
+      };
+
+    });
+  }
+
+  $('#msgBtn').on('click', (e) => {
+    console.log('clicking clicking');
+    closeNav();
+    messageToday();
   });
-}
-
-
-  // const apistart = 'http://api.openweathermap.org/data/2.5/weather?';
-  // let mylat = userLocation.lat;
-  // let mylong = userLocation.long;
-  //
-  // const appid = '&appid=964a6f877163808007380a84cce012ac'; //this is the api key
-  // const coordinates = 'lat='+mylat+'&lon='+mylong+'&cnt=10';
-  // const celcius = '&units=metric';
-  //
-  // getDataByCoordinates = ()=> {
-  //   const api = apistart + coordinates + appid + celcius;
-  //
-  //   console.log(api);
-  //   $.getJSON(api, (data)=>{
-  //
-  //     console.log(data.main.temp);
-  //     console.log(data.name);
-  //   });
-  // };
 
   $('#dataBtn').on('click', (e) => {
     closeNav();
