@@ -131,6 +131,13 @@ color: rgba(255, 255, 255, 0.5);;
   padding-left: 10%;
 }
 
+#today {
+  font-size: 16px;
+  height: 50px;
+  margin-top: 10%;
+  padding-left: 10%;
+}
+
 
 /**********RESPONSIVE FOR IPAD  WIDTH: 764PX HEIGHT: 1024P*********/
 @media all and (min-width: 700px) {

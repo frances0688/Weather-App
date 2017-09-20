@@ -18,7 +18,7 @@ const isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next();
   res.redirect('/');
-}
+};
 //Get User Page
 authRoutes.get('/user', isAuthenticated, function(req, res){
   res.render('user', { user: req.user });

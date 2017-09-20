@@ -29,23 +29,22 @@ module.exports = (passport) => {
     });
 
 
-    passport.use('local-login', new LocalStrategy({
-
-        passReqToCallback : true
-    },
-    (email, password, next) => {
+    passport.use('local-login', new LocalStrategy((email, password, next) => {
         // check in mongo if a user with username exists or not
         User.findOne({email}, (err, user) => {
             // In case of any error, return using the done method
             if (err) {
+              console.log('first error');
               return next(err);
             }
             // Username does not exist, log error & redirect back
             if (!user){
+              console.log('user not found');
             return next(null, false, { message: 'User Not found.' });
             }
             // User exists but wrong password, log the error
             if (!bcrypt.compareSync(password, user.password)) {
+              console.log('wrong password');
                 return next(null, false, { message: 'Incorrect password' });
             }
             // User and password both match, return user from
