@@ -44,26 +44,37 @@ var mylong;
         console.log('messageToday functon is called');
 
         $.getJSON(api, (data)=>{
-
-          if (data.main.temp > userFront.idealTemp){
-          $('#today').html("It's too hot for you today! Stay inside");
+          console.log('actual temp', data.main.temp);
+          if (data.main.temp === userFront.idealTemp || data.main.temp === userFront.idealTemp+1 || data.main.temp === userFront.idealTemp-1 ){
+          $('#today').html("<h1>This is a perfect day for you! Enjoy!</h1>");
           }
-          else {$('#today').html("You might think its too cold today.");}
-
+          else if (data.main.temp < userFront.hotTemp && data.main.temp > userFront.coldTemp)
+          {$('#today').html("<h1>Today's gonna be a good day.</h1>");}
+          else if (data.main.temp > userFront.hotTemp)
+          {$('#today').html("<h1>It's too fucking hot for you today.</h1>");}
+          else {$('#today').html("<h1>It's freezing outside. Stay in bed.</h1>");}
         });
       };
 
     });
   }
 
+
+
   $('#msgBtn').on('click', (e) => {
     console.log('clicking clicking');
+    console.log(
+      userFront.idealTemp, 'ideal',
+       userFront.coldTemp, 'cold',
+     userFront.hotTemp, 'hot'  );
+    $( "#data" ).empty();
     closeNav();
     messageToday();
   });
 
   $('#dataBtn').on('click', (e) => {
     closeNav();
+    $( "#today" ).empty();
     getDataByCoordinates();
   });
 
