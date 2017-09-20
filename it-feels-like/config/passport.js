@@ -97,59 +97,10 @@ module.exports = (passport) => {
                     return next(null, newUser);
                 });
 
-            })
+            });
 
         }
     ));
-<<<<<<< HEAD
-        //     User.findOne({'email': email}, (err, user) => {
-        //         if (err) {
-        //             return next(err);
-        //         }
-        //         if (!user) {
-        //             return next(null, false, { message: "Incorrect username" });
-        //         }
-        //         else {
-        //             const { name, email, password, password2 } = req.body;
-        //             // Validation
-        //             // req.checkBody('name', { message:'Name is required'}).notEmpty(),
-        //             // req.checkBody('email', { message:'Email is required'}).notEmpty(),
-        //             // req.checkBody('email', { message:'Email is not valid'}).isEmail(),
-        //             // req.checkBody('password', { message:'Password is required'}).notEmpty(),
-        //             // req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password),
-
-        //             // errors = req.validationErrors();
-
-        //             // if (errors){
-        //             //     res.render ('signup',{
-        //             //         errors: errors
-        //             //     });
-        //             // }else {
-        //             //     console.log('Passed')
-        //             // }
-        //             const salt = bcrypt.genSaltSync(bcryptSalt);
-        //             const hashPass = bcrypt.hashSync(password, salt);
-
-        //             const newUser = new User({
-        //                 name,
-        //                 email,
-        //                 password: hashPass
-        //             });
-
-        //             newUser.save(function(error) {
-        //                 if (error) {
-        //                     res.render("signup", { message: "Something went wrong" });
-        //                 } else {
-        //                     res.redirect("preferences")
-        //                 }
-        //             });
-
-        //     }
-        // });
-    // }));
-=======
-
->>>>>>> master
 
     passport.use(new FbStrategy({
     clientID: '502415123447256',
