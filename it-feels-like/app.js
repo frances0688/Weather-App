@@ -14,6 +14,7 @@ const session         = require('express-session');
 const MongoStore      = require('connect-mongo')(session);
 const configPassport  = require('./config/passport');
 const User            = require('./models/user');
+const expressValidator = require('express-validator');
 
 const app = express();
 
@@ -31,6 +32,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(expressValidator());
 
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
