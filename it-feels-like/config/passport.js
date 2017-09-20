@@ -33,25 +33,24 @@ module.exports = (passport) => {
 
         passReqToCallback : true
     },
-    function(req, email, password, next, done) {
+    (email, password, next) => {
         // check in mongo if a user with username exists or not
-        User.findOne({ 'email' :  email },
-        function(err, user) {
+        User.findOne({email}, (err, user) => {
             // In case of any error, return using the done method
-            if (err)
-            return next(err);
+            if (err) {
+              return next(err);
+            }
             // Username does not exist, log error & redirect back
             if (!user){
             return next(null, false, { message: 'User Not found.' });
             }
             // User exists but wrong password, log the error
             if (!bcrypt.compareSync(password, user.password)) {
-                console.log('wonrg password');
                 return next(null, false, { message: 'Incorrect password' });
             }
             // User and password both match, return user from
             // done method which will be treated like success
-            return done(null, user);
+            return next(null, user);
             }
         );
     }));

@@ -13,7 +13,7 @@ authRoutes.get('/facebook', passport.authenticate('facebook', {scope:"email"}));
 authRoutes.get('/facebook/callback', passport.authenticate('facebook',
 { successRedirect: '/preferences', failureRedirect: '/login' }));
 
-  
+
 const isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next();
@@ -25,9 +25,9 @@ authRoutes.get('/user', isAuthenticated, function(req, res){
 });
 
 // Get login page
-authRoutes.get('/login', function(req, res, next) {
-  res.render('login');
-});
+// authRoutes.get('/login', function(req, res, next) {
+//   res.render('login');
+// });
 
 // Login Post
 authRoutes.post('/login', passport.authenticate('local-login', {
