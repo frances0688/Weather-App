@@ -42,7 +42,6 @@ module.exports = (passport) => {
             return next(err);
             // Username does not exist, log error & redirect back
             if (!user){
-            console.log('User Not Found with email '+ email);
             return next(null, false, { message: 'User Not found.' });
             }
             // User exists but wrong password, log the error
@@ -58,94 +57,50 @@ module.exports = (passport) => {
 
 
     passport.use('local-signup', new LocalStrategy({
-      usernameField: 'email',
-      passReqToCallback: true
-      },
-      (req, name, email, next, password, password2) => {
-        process.nextTick(() => {
-          User.findOne({email}, (err, user) => {
-              if (err) {
-                  return next(err);
-              }
-              if (user) {
-                  return next(null, false);
-              }
+            usernameField: 'email',
+            passReqToCallback: true
+        },
+        (req, name, email, next, password, password2) => {
+            User.findOne({email}, (err, user) => {
+                if (err) {
+                    return next(err);
+                }
+                if (user) {
+                    return next(null, false);
+                }
 
-              name      = req.body.name;
-              email     = req.body.email;
-              password  = req.body.password;
-              password2 = req.body.password2;
+                name      = req.body.name;
+                email     = req.body.email;
+                password  = req.body.password;
+                password2 = req.body.password2;
 
-              // Validation
-              req.checkBody('name', { message:'Name is required'}).notEmpty();
-              req.checkBody('email', { message:'Email is required'}).notEmpty();
-              req.checkBody('email', { message:'Email is not valid'}).isEmail();
-              req.checkBody('password', { message:'Password is required'}).notEmpty();
-              req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password);
+                // Validation
+                // req.checkBody('name', { message:'Name is required'}).notEmpty(),
+                // req.checkBody('email', { message:'Email is required'}).notEmpty(),
+                // req.checkBody('email', { message:'Email is not valid'}).isEmail(),
+                // req.checkBody('password', { message:'Password is required'}).notEmpty(),
+                // req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password),
 
-              // errors = req.validationErrors();
+                // errors = req.validationErrors();
 
-              const salt      = bcrypt.genSaltSync(bcryptSalt);
-              const hashPass  = bcrypt.hashSync(password, salt);
-              const newUser   = new User({
-                  name,
-                  email,
-                  password: hashPass
-              });
+                const salt      = bcrypt.genSaltSync(bcryptSalt);
+                const hashPass  = bcrypt.hashSync(password, salt);
+                const newUser   = new User({
+                    name,
+                    email,
+                    password: hashPass
+                });
 
-              newUser.save((err) => {
-                  if (err){ next(err); }
-                  return next(null, newUser);
-              });
-           });
-        });
-      }
+                newUser.save((err) => {
+                    if (err){ next(err); }
+                    return next(null, newUser);
+                });
+
+            })
+
+        }
     ));
-        //     User.findOne({'email': email}, (err, user) => {
-        //         if (err) {
-        //             return next(err);
-        //         }
-        //         if (!user) {
-        //             return next(null, false, { message: "Incorrect username" });
-        //         }
-        //         else {
-        //             const { name, email, password, password2 } = req.body;
-        //             // Validation
-        //             // req.checkBody('name', { message:'Name is required'}).notEmpty(),
-        //             // req.checkBody('email', { message:'Email is required'}).notEmpty(),
-        //             // req.checkBody('email', { message:'Email is not valid'}).isEmail(),
-        //             // req.checkBody('password', { message:'Password is required'}).notEmpty(),
-        //             // req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password),
 
-        //             // errors = req.validationErrors();
-
-        //             // if (errors){
-        //             //     res.render ('signup',{
-        //             //         errors: errors
-        //             //     });
-        //             // }else {
-        //             //     console.log('Passed')
-        //             // }
-        //             const salt = bcrypt.genSaltSync(bcryptSalt);
-        //             const hashPass = bcrypt.hashSync(password, salt);
-
-        //             const newUser = new User({
-        //                 name,
-        //                 email,
-        //                 password: hashPass
-        //             });
-
-        //             newUser.save(function(error) {
-        //                 if (error) {
-        //                     res.render("signup", { message: "Something went wrong" });
-        //                 } else {
-        //                     res.redirect("preferences")
-        //                 }
-        //             });
-
-        //     }
-        // });
-    // }));
 
     passport.use(new FbStrategy({
     clientID: '502415123447256',
