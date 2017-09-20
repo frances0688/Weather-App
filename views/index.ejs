@@ -1,32 +1,36 @@
 
 <div class="index-wrapper">
-  <h1>It Feels<br> Like...</h1>
+  <h1>It feels like<br> <span class="edit"></span></h1>
 
-
-  <form id="login-form" action="/login" method="POST">
-    <div>
-
-      <input type="text" id="login-email" name="email" placeholder="email">
-      
-    </div>
-    <div>
-
-      <input type="password" id="login-password" name="password" placeholder="password">
-
-    </div>
-    <div>
-
-      <input type="submit" id="login" value="Log In">
-
-    </div>
-  </form>
 
 
 
   <div class="button-wrapper">
-    <a href="/facebook">Login With Facebook</a>
+
+      <form id="login-form" action="/login" method="POST">
+        <div>
+
+          <input type="text" id="login-email" name="email" placeholder="email">
+
+        </div>
+        <div>
+
+          <input type="password" id="login-password" name="password" placeholder="password">
+
+        </div>
+        <div>
+
+          <input type="submit" id="login" value="Log In">
+
+        </div>
+      </form>
+
+
+
+
+    <a href="/facebook" class="button facebook">Login With Facebook</a>
     <br>
-    <a href="/signup">Sign Up</a>
+    <a href="/signup" class="noBox">Sign Up</a>
   </div>
 
 </div>
