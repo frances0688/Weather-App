@@ -40,21 +40,11 @@ authRoutes.get('/signup', function(req, res){
   res.render('signup');
 });
 
+// SignUp Post
 authRoutes.post('/signup', passport.authenticate('local-signup', {
   successRedirect: '/preferences',
   failureRedirect: '/signup'
 }));
-
-// SignUp Post
-// authRoutes.post('/signup', function(req,res,next){
-//   console.log(req.url);
-//   passport.authenticate('local-signup', function(error, user, info) {
-//     console.log("Sign up");
-//     console.log(error);
-//     console.log(user);
-//     console.log(info);
-//   })(req,res,next);
-// });
 
 // Handle Logout
 authRoutes.get('/signout', function(req, res) {
