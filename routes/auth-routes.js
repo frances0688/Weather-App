@@ -11,7 +11,7 @@ const flash = require("connect-flash");
 //THE FACEBOOK LOGIN
 authRoutes.get('/facebook', passport.authenticate('facebook', {scope:"email"}));
 authRoutes.get('/facebook/callback', passport.authenticate('facebook',
-{ successRedirect: '/preferences', failureRedirect: '/login' }));
+{ successRedirect: '/user', failureRedirect: '/' }));
 
 
 const isAuthenticated = function (req, res, next) {
@@ -20,7 +20,11 @@ const isAuthenticated = function (req, res, next) {
   res.redirect('/');
 };
 //Get User Page
-authRoutes.get('/user', isAuthenticated, function(req, res){
+authRoutes.get('/user', isAuthenticated, function(req, res, next){
+  if (!req.user.preferences) {
+    res.redirect('/preferences');
+    return next();
+  }
   res.render('user', { user: req.user });
 });
 
@@ -28,11 +32,6 @@ function test(req, res, next) {
   console.log('test');
   next();
 }
-
-// Get login page
-// authRoutes.get('/login', function(req, res, next) {
-//   res.render('login');
-// });
 
 // Login Post
 authRoutes.post('/login', test, passport.authenticate('local-login', {
@@ -42,6 +41,9 @@ authRoutes.post('/login', test, passport.authenticate('local-login', {
 
 // Get signUp page
 authRoutes.get('/signup', function(req, res){
+  if (req.session.signupValidation) {
+     console.log('validation errors', req.session.signupValidation);
+  }
   res.render('signup');
 });
 

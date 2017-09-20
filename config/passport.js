@@ -1,14 +1,14 @@
 // config/passport.js
 
 // load all the things we need
-const express = require('express');
-const User = require('../models/user');
-const Preferences = require('../models/preferences');
-const bcrypt = require("bcrypt");
-const bcryptSalt = 10;
-const passport = require('passport');
+const express       = require('express');
+const User          = require('../models/user');
+const Preferences   = require('../models/preferences');
+const bcrypt        = require("bcrypt");
+const bcryptSalt    = 10;
+const passport      = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const FbStrategy = require('passport-facebook').Strategy;
+const FbStrategy    = require('passport-facebook').Strategy;
 
 
 // expose this function to our app using module.exports
@@ -31,6 +31,19 @@ module.exports = (passport) => {
         passReqToCallback: true
     };
     const signupCallback = (req, name, email, next, password, password2) => {
+
+        req.checkBody('name', { message:'Name is required'}).notEmpty();
+        req.checkBody('email', { message:'Email is required'}).notEmpty();
+        req.checkBody('email', { message:'Email is not valid'}).isEmail();
+        req.checkBody('password', { message:'Password is required'}).notEmpty();
+        req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password);
+
+        errors = req.validationErrors();
+        if (errors) {
+            req.session.signupValidation = errors;
+            return next(null, false, errors)
+        }
+
         User.findOne({email}, (err, user) => {
             if (err) {
                 return next(err);
@@ -45,13 +58,7 @@ module.exports = (passport) => {
             password2 = req.body.password2;
 
             // Validation
-            req.checkBody('name', { message:'Name is required'}).notEmpty(),
-            req.checkBody('email', { message:'Email is required'}).notEmpty(),
-            req.checkBody('email', { message:'Email is not valid'}).isEmail(),
-            req.checkBody('password', { message:'Password is required'}).notEmpty(),
-            req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password),
-
-            errors = req.validationErrors();
+            
 
             const salt      = bcrypt.genSaltSync(bcryptSalt);
             const hashPass  = bcrypt.hashSync(password, salt);
