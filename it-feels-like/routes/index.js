@@ -19,10 +19,4 @@ router.get('/preferences', function(req, res, next) {
   res.render('preferences');
 });
 
-
-
-
-
-
-
 module.exports = router;

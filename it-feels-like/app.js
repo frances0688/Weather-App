@@ -26,6 +26,14 @@ app.set('view engine', 'ejs');
 app.set('layout', 'layouts/main-layout');
 app.use(expressLayouts);
 
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+
 
 app.use(session({
   secret: 'spiceupyourlife',
@@ -48,22 +56,17 @@ app.use( (req, res, next) => {
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
 // Routes
+// const passportRoutes = require('./config/passport');
 const authRoutes = require("./routes/auth-routes");
 const index = require('./routes/index');
 const users = require('./routes/users');
 
+app.use('/', authRoutes);
 app.use('/', index);
 app.use('/', users);
-app.use('/', authRoutes);
+// app.use('/', passportRoutes);
 
 
 
