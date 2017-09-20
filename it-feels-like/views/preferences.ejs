@@ -4,82 +4,78 @@
 
 <form id="preferences-form-element" method="POST" cf-form>
 
-
-
-
   <fieldset cf-questions="How do you feel about the sun?">
 
+    <input type="radio" name="sun" id="sun-yes" value="1" >
+    <label for="sun-yes">yes</label>
 
-      <input type="radio" name="sun" id="sun-yes" value="1" >
-      <label for="sun-yes">yes</label><br>
+    <input type="radio" name="sun" id="sun-no" value="-1" >
+    <label for="sun-no">no</label>
 
-      <input type="radio" name="sun" id="sun-no" value="-1" >
-      <label for="sun-no">no</label><br>
-
-      <input type="radio" name="sun" id="sun-dontcare" value="0" >
-      <label for="sun-dontcare">I don't care</label><br>
+    <input type="radio" name="sun" id="sun-dontcare" value="0" >
+    <label for="sun-dontcare">I don't care</label>
 
   </fieldset>
-
 
 
   <fieldset cf-questions="Do you like the rain?">
-    <input type="radio" name="rain" value="1">
-    <label for="rain-yes">yes</label><br>
 
-    <input type="radio" name="rain" value="-1">
-    <label for="rain-no">no</label><br>
+    <input cf-label="yes" type="radio" name="rain" id="rain-yes" value="1">
 
-    <input type="radio" name="rain" value="0">
-    <label for="rain-dontcare">I don't care</label><br>
+    <input cf-label="no" type="radio" name="rain" id="rain-no" value="-1">
+
+    <input cf-label="I don't care" type="radio" name="rain" value="0" id="rain-dontcare">
+
+
   </fieldset>
+
 
   <fieldset cf-questions="Do you like cloudy days?">
 
+    <input type="radio" name="clouds" value="1" id="clouds-yes">
+    <label for="clouds-yes">yes</label>
 
-    <input type="radio" name="clouds" value="1">
-    <label for="cloud-yes">yes</label><br>
+    <input type="radio" name="clouds" value="-1" id="clouds-no">
+    <label for="clouds-no">no</label>
 
-    <input type="radio" name="clouds" value="-1">
-    <label for="cloud-no">no</label><br>
+    <input type="radio" name="clouds" value="0" id="clouds-dontcare">
+    <label for="clouds-dontcare">I don't care</label>
 
-    <input type="radio" name="clouds" value="0">
-    <label for="cloud-dontcare">I don't care</label><br>
   </fieldset>
+
 
   <fieldset cf-questions="Do you like snow?">
 
+    <input type="radio" name="snow" value="1" id="snow-yes">
+    <label for="snow-yes">yes</label>
 
-    <input type="radio" name="snow" value="1">
-    <label for="snow-yes">yes</label><br>
+    <input type="radio" name="snow" value="-1" id="snow-no">
+    <label for="snow-no">no</label>
 
-    <input type="radio" name="snow" value="-1">
-    <label for="snow-no">no</label><br>
+    <input type="radio" name="snow" value="0" id="snow-dontcare">
+    <label for="snow-dontcare">I don't care</label>
 
-    <input type="radio" name="snow" value="0">
-    <label for="snow-dontcare">I don't care</label><br>
   </fieldset>
+
 
   <fieldset cf-questions="Do you care about the wind?">
 
+    <input type="radio" name="wind" value="1" id="wind-yes">
+    <label for="wind-yes">yes</label>
 
-    <input type="radio" name="wind" value="1">
-    <label for="wind-yes">yes</label><br>
+    <input type="radio" name="wind" value="-1" id="wind-no">
+    <label for="wind-no">no</label>
 
-    <input type="radio" name="wind" value="-1">
-    <label for="wind-no">no</label><br>
+    <input type="radio" name="wind" value="0" id="wind-dontcare">
+    <label for="wind-dontcare">I don't care</label>
 
-    <input type="radio" name="wind" value="0">
-    <label for="wind-dontcare">I don't care</label><br>
   </fieldset>
 
+    <input type="text" id="hot" name="hot" cf-input-placeholder="30" cf-questions="How hot is too hot for you?"/><span>°C</span>
 
-    <input type="text" id="hot" name="hot" placeholder="30" cf-questions="How hot is too hot for you?"/><span>°C</span>
-    
-    <input type="text" id="cold" name="cold" placeholder="-10"cf-questions="How cold is too cold for you?"/><span>°C</span>
+    <input type="text" id="cold" name="cold" cf-input-placeholder="20"cf-questions="How cold is too cold for you?"/><span>°C</span>
 
-    <input type="text" id="ideal" name="ideal" placeholder="16"cf-questions="What's your ideal temperature?"/><span>°C</span>
-
+    <input type="text" id="ideal" name="ideal" cf-input-placeholder="16" cf-questions="What's your ideal temperature?"/><span>°C</span>
 
     <div>
       <input type="submit" value="Save">
