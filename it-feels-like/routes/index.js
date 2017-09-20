@@ -1,6 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+const isAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated())
+    return next();
+  res.redirect('/');
+};
+
 /* GET TO ALL THE PAGES*/
 router.get('/', function(req, res, next) {
   res.render('index');
@@ -15,7 +21,7 @@ router.get('/user', function(req, res, next) {
   res.render('user');
 });
 
-router.get('/preferences', function(req, res, next) {
+router.get('/preferences',  isAuthenticated, function(req, res, next) {
   res.render('preferences');
 });
 
