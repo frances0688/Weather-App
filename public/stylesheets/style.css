@@ -213,7 +213,7 @@ color: rgba(255, 255, 255, 0.5);;
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
     top: 0;
-    left: 0;
+    left: -200px;
     background-color: rgba(30, 30, 30, 0.85);
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */

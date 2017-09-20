@@ -1,5 +1,5 @@
 $(document).ready(()=>{
-closeNav();
+
 var mylat;
 var mylong;
 
