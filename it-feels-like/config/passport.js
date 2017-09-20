@@ -30,11 +30,12 @@ module.exports = (passport) => {
 
 
     passport.use('local-login', new LocalStrategy({
+
         passReqToCallback : true
     },
-    function(req, email, password, next, done) { 
+    function(req, email, password, next, done) {
         // check in mongo if a user with username exists or not
-        User.findOne({ 'email' :  email }, 
+        User.findOne({ 'email' :  email },
         function(err, user) {
             // In case of any error, return using the done method
             if (err)
@@ -42,13 +43,13 @@ module.exports = (passport) => {
             // Username does not exist, log error & redirect back
             if (!user){
             console.log('User Not Found with email '+ email);
-            return next(null, false, { message: 'User Not found.' });                 
+            return next(null, false, { message: 'User Not found.' });
             }
-            // User exists but wrong password, log the error 
+            // User exists but wrong password, log the error
             if (!bcrypt.compareSync(password, user.password)) {
                 return next(null, false, { message: 'Incorrect password' });
             }
-            // User and password both match, return user from 
+            // User and password both match, return user from
             // done method which will be treated like success
             return done(null, user);
             }
@@ -57,51 +58,48 @@ module.exports = (passport) => {
 
 
     passport.use('local-signup', new LocalStrategy({
-            // usernameField: 'email',    
-            passReqToCallback: true 
-        },
-        (req, name, next, email, password, password2) => {
-            process.nextTick(() => {
-                User.findOne({email}, (err, user) => {
-                    if (err) {
-                        return next(err);
-                    }
-                    if (user) {
-                        return next(null, false);
-                    }
-                    
-                    name      = req.body.name,
-                    email     = req.body.email,
-                    password  = req.body.password,
-                    password2 = req.body.password2
+      usernameField: 'email',
+      passReqToCallback: true
+      },
+      (req, name, email, next, password, password2) => {
+        process.nextTick(() => {
+          User.findOne({email}, (err, user) => {
+              if (err) {
+                  return next(err);
+              }
+              if (user) {
+                  return next(null, false);
+              }
 
-                    // Validation
-                    // req.checkBody('name', { message:'Name is required'}).notEmpty(),
-                    // req.checkBody('email', { message:'Email is required'}).notEmpty(),
-                    // req.checkBody('email', { message:'Email is not valid'}).isEmail(),
-                    // req.checkBody('password', { message:'Password is required'}).notEmpty(),
-                    // req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password),
+              name      = req.body.name;
+              email     = req.body.email;
+              password  = req.body.password;
+              password2 = req.body.password2;
 
-                    // errors = req.validationErrors();
+              // Validation
+              req.checkBody('name', { message:'Name is required'}).notEmpty();
+              req.checkBody('email', { message:'Email is required'}).notEmpty();
+              req.checkBody('email', { message:'Email is not valid'}).isEmail();
+              req.checkBody('password', { message:'Password is required'}).notEmpty();
+              req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password);
 
-                    const salt      = bcrypt.genSaltSync(bcryptSalt);
-                    const hashPass  = bcrypt.hashSync(password, salt);
-                    const newUser   = new User({
-                        name,
-                        email,
-                        password: hashPass 
-                    });
+              // errors = req.validationErrors();
 
-                    newUser.save((err) => {
-                        if (err){ next(err); }
-                        return next(null, newUser);
-                    });
-                    
-                 })
-            
-                
-            });
-        }
+              const salt      = bcrypt.genSaltSync(bcryptSalt);
+              const hashPass  = bcrypt.hashSync(password, salt);
+              const newUser   = new User({
+                  name,
+                  email,
+                  password: hashPass
+              });
+
+              newUser.save((err) => {
+                  if (err){ next(err); }
+                  return next(null, newUser);
+              });
+           });
+        });
+      }
     ));
         //     User.findOne({'email': email}, (err, user) => {
         //         if (err) {
@@ -130,13 +128,13 @@ module.exports = (passport) => {
         //             // }
         //             const salt = bcrypt.genSaltSync(bcryptSalt);
         //             const hashPass = bcrypt.hashSync(password, salt);
-                
+
         //             const newUser = new User({
         //                 name,
         //                 email,
         //                 password: hashPass
         //             });
-            
+
         //             newUser.save(function(error) {
         //                 if (error) {
         //                     res.render("signup", { message: "Something went wrong" });
@@ -144,8 +142,8 @@ module.exports = (passport) => {
         //                     res.redirect("preferences")
         //                 }
         //             });
-                    
-        //     } 
+
+        //     }
         // });
     // }));
 
