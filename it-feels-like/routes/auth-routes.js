@@ -24,13 +24,18 @@ authRoutes.get('/user', isAuthenticated, function(req, res){
   res.render('user', { user: req.user });
 });
 
+function test(req, res, next) {
+  console.log('test');
+  next();
+}
+
 // Get login page
 // authRoutes.get('/login', function(req, res, next) {
 //   res.render('login');
 // });
 
 // Login Post
-authRoutes.post('/login', passport.authenticate('local-login', {
+authRoutes.post('/login', test, passport.authenticate('local-login', {
   successRedirect: '/user',
   failureRedirect: '/',
 }));
