@@ -16,9 +16,14 @@ router.get('/welcome', function(req, res, next) {
   res.render('welcome');
 });
 
-router.get('/user', function(req, res, next) {
-  console.log("session",req.session);
-  res.render('user');
+router.get('/user:id', function(req, res, next) {
+  const userId = req.params.id;
+
+  User.findById(userId, (err, user) => {
+  if (err) { return next(err); }
+  res.render('user', {user});
+  });
+
 });
 
 router.get('/preferences',  isAuthenticated, function(req, res, next) {

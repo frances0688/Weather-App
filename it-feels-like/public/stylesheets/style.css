@@ -30,6 +30,11 @@ body {
   height: 100vh;
 }
 
+.menu-msg {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+}
+
 .index-wrapper {
   display: flex;
   flex-direction: column;

@@ -3,7 +3,7 @@ $(document).ready(()=>{
 var mylat;
 var mylong;
 
-
+  //This is to get the geolocation. We need to change this to be more accurate. Use google maps api?
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       const userLocation = {
@@ -20,8 +20,10 @@ var mylong;
       const coordinates = 'lat='+mylat+'&lon='+mylong+'&cnt=10';
       const celcius = '&units=metric';
 
+      const api = apistart + coordinates + appid + celcius;
+
+      //This is to get the data from API according to user location
       getDataByCoordinates = ()=> {
-        const api = apistart + coordinates + appid + celcius;
 
         $.getJSON(api, (data)=>{
           $('#data').html(`It's ${data.weather[0].description} in ${data.name}!
@@ -35,11 +37,30 @@ var mylong;
 
 
 
+
+//Function to check if temp is higher or lower than user prefers
+//And send a message according to that
+      messageToday = ()=> {
+        console.log('messageToday functon is called');
+
+        $.getJSON(api, (data)=>{
+
+          if (data.main.temp > userFront.idealTemp){
+          $('#today').html("It's too hot today! Stay inside");
+          }
+          else {$('#today').html("COOOOLD");}
+
+        });
+      };
+    
+    });
+  }
+
+  $('#msgBtn').on('click', (e) => {
+    console.log('clicking clicking');
+    closeNav();
+    messageToday();
   });
-}
-
-
-
 
   $('#dataBtn').on('click', (e) => {
     closeNav();
