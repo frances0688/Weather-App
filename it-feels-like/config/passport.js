@@ -57,37 +57,51 @@ module.exports = (passport) => {
 
 
     passport.use('local-signup', new LocalStrategy({
-            usernameField: 'email',    
+            // usernameField: 'email',    
             passReqToCallback: true 
         },
-        (req, name, email, password, password2, next) => {
-            console.log("fields", name, email, password, password2);
-            User.findOne({email}, (err, user) => {
-                if (err) {
-                    return next(err);
-                }
-                if (user) {
-                    return next(null, false);
-                }
-                // Validation
-
-                const salt      = bcrypt.genSaltSync(bcryptSalt);
-                const hashPass  = bcrypt.hashSync(password, salt);
-                const newUser   = new User({
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: hashPass
-                });
-
-                newUser.save(function(error) {
-                    if (error) {
-                        res.render("signup", { message: "Something went wrong" });
-                    } else {
-                        res.redirect("/preferences")
+        (req, name, next, email, password, password2) => {
+            process.nextTick(() => {
+                User.findOne({email}, (err, user) => {
+                    if (err) {
+                        return next(err);
                     }
-                });
-        })
-    }
+                    if (user) {
+                        return next(null, false);
+                    }
+                    
+                    name      = req.body.name,
+                    email     = req.body.email,
+                    password  = req.body.password,
+                    password2 = req.body.password2
+
+                    // Validation
+                    // req.checkBody('name', { message:'Name is required'}).notEmpty(),
+                    // req.checkBody('email', { message:'Email is required'}).notEmpty(),
+                    // req.checkBody('email', { message:'Email is not valid'}).isEmail(),
+                    // req.checkBody('password', { message:'Password is required'}).notEmpty(),
+                    // req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password),
+
+                    // errors = req.validationErrors();
+
+                    const salt      = bcrypt.genSaltSync(bcryptSalt);
+                    const hashPass  = bcrypt.hashSync(password, salt);
+                    const newUser   = new User({
+                        name,
+                        email,
+                        password: hashPass 
+                    });
+
+                    newUser.save((err) => {
+                        if (err){ next(err); }
+                        return next(null, newUser);
+                    });
+                    
+                 })
+            
+                
+            });
+        }
     ));
         //     User.findOne({'email': email}, (err, user) => {
         //         if (err) {
