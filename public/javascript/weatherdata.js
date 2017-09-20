@@ -1,5 +1,5 @@
 $(document).ready(()=>{
-
+closeNav();
 var mylat;
 var mylong;
 
@@ -19,6 +19,7 @@ var mylong;
       const appid = '&appid=964a6f877163808007380a84cce012ac'; //this is the api key
       const coordinates = 'lat='+mylat+'&lon='+mylong+'&cnt=10';
       const celcius = '&units=metric';
+
 
       const api = apistart + coordinates + appid + celcius;
 
@@ -55,7 +56,9 @@ var mylong;
           else {$('#today').html("<h1>It's freezing outside. Stay in bed.</h1>");}
         });
       };
-
+      if (coordinates){
+        messageToday();
+      }
     });
   }
 

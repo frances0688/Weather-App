@@ -4,12 +4,28 @@ font-family: 'Cabin', sans-serif;
 font-family: 'Montserrat', sans-serif;
 */
 
+/*ORANGE GRADIENT FOR SUN?
+background: #e65c00;  fallback for old browsers
+background: -webkit-linear-gradient(to bottom, #F9D423, #e65c00);   Chrome 10-25, Safari 5.1-6
+background: linear-gradient(to bottom, #F9D423, #e65c00);  W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+/*BLUE GRADIENT FOR COLD?
+background: #003973;   fallback for old browsers
+background: -webkit-linear-gradient(to bottom, #E5E5BE, #003973);  Chrome 10-25, Safari 5.1-6
+background: linear-gradient(to bottom, #E5E5BE, #003973); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+/*TITANIUM GREY GRADIENT
+background: #283048;   fallback for old browsers
+background: -webkit-linear-gradient(to bottom, #859398, #283048);   Chrome 10-25, Safari 5.1-6
+background: linear-gradient(to bottom, #859398, #283048);  W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
 *, *:after, *:before{
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-
 
 
 body {
@@ -47,14 +63,9 @@ body {
   background: -webkit-linear-gradient(to top, #faaca8, #ddd6f3);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #faaca8, #ddd6f3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-/*
-  background-color: #4158D0;
-  background-image: -webkit-linear-gradient(243deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-  background-image: -o-linear-gradient(243deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-  background-image: linear-gradient(333deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);*/
-
-
 }
+
+
 
  h1 {
 
