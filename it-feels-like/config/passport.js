@@ -30,24 +30,26 @@ module.exports = (passport) => {
 
 
     passport.use('local-login', new LocalStrategy({
+
         passReqToCallback : true
     },
-    function(req, email, password, next, done) { 
+    function(req, email, password, next, done) {
         // check in mongo if a user with username exists or not
-        User.findOne({ 'email' :  email }, 
+        User.findOne({ 'email' :  email },
         function(err, user) {
             // In case of any error, return using the done method
             if (err)
             return next(err);
             // Username does not exist, log error & redirect back
             if (!user){
-            return next(null, false, { message: 'User Not found.' });                 
+            return next(null, false, { message: 'User Not found.' });
             }
-            // User exists but wrong password, log the error 
+            // User exists but wrong password, log the error
             if (!bcrypt.compareSync(password, user.password)) {
+                console.log('wonrg password');
                 return next(null, false, { message: 'Incorrect password' });
             }
-            // User and password both match, return user from 
+            // User and password both match, return user from
             // done method which will be treated like success
             return done(null, user);
             }
@@ -56,8 +58,8 @@ module.exports = (passport) => {
 
 
     passport.use('local-signup', new LocalStrategy({
-            usernameField: 'email',    
-            passReqToCallback: true 
+            usernameField: 'email',
+            passReqToCallback: true
         },
         (req, name, email, next, password, password2) => {
             User.findOne({email}, (err, user) => {
@@ -67,7 +69,7 @@ module.exports = (passport) => {
                 if (user) {
                     return next(null, false);
                 }
-                
+
                 name      = req.body.name;
                 email     = req.body.email;
                 password  = req.body.password;
@@ -87,19 +89,18 @@ module.exports = (passport) => {
                 const newUser   = new User({
                     name,
                     email,
-                    password: hashPass 
+                    password: hashPass
                 });
 
                 newUser.save((err) => {
                     if (err){ next(err); }
                     return next(null, newUser);
                 });
-                
-            })
-            
+
+            });
+
         }
     ));
-  
 
     passport.use(new FbStrategy({
     clientID: '502415123447256',
