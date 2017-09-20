@@ -30,6 +30,7 @@ module.exports = (passport) => {
 
 
     passport.use('local-login', new LocalStrategy({
+
         passReqToCallback : true
     },
     function(req, email, password, next, done) {
@@ -41,7 +42,6 @@ module.exports = (passport) => {
             return next(err);
             // Username does not exist, log error & redirect back
             if (!user){
-            console.log('User Not Found with email '+ email);
             return next(null, false, { message: 'User Not found.' });
             }
             // User exists but wrong password, log the error
@@ -61,8 +61,7 @@ module.exports = (passport) => {
             usernameField: 'email',
             passReqToCallback: true
         },
-        (req, name, email, password, password2, next) => {
-            console.log("fields", name, email, password, password2);
+        (req, name, email, next, password, password2) => {
             User.findOne({email}, (err, user) => {
                 if (err) {
                     return next(err);
@@ -70,26 +69,39 @@ module.exports = (passport) => {
                 if (user) {
                     return next(null, false);
                 }
+
+                name      = req.body.name;
+                email     = req.body.email;
+                password  = req.body.password;
+                password2 = req.body.password2;
+
                 // Validation
+                // req.checkBody('name', { message:'Name is required'}).notEmpty(),
+                // req.checkBody('email', { message:'Email is required'}).notEmpty(),
+                // req.checkBody('email', { message:'Email is not valid'}).isEmail(),
+                // req.checkBody('password', { message:'Password is required'}).notEmpty(),
+                // req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password),
+
+                // errors = req.validationErrors();
 
                 const salt      = bcrypt.genSaltSync(bcryptSalt);
                 const hashPass  = bcrypt.hashSync(password, salt);
                 const newUser   = new User({
-                    name: req.body.name,
-                    email: req.body.email,
+                    name,
+                    email,
                     password: hashPass
                 });
 
-                newUser.save(function(error) {
-                    if (error) {
-                        res.render("signup", { message: "Something went wrong" });
-                    } else {
-                        res.redirect("/preferences")
-                    }
+                newUser.save((err) => {
+                    if (err){ next(err); }
+                    return next(null, newUser);
                 });
-        })
-    }
+
+            })
+
+        }
     ));
+<<<<<<< HEAD
         //     User.findOne({'email': email}, (err, user) => {
         //         if (err) {
         //             return next(err);
@@ -135,6 +147,9 @@ module.exports = (passport) => {
         //     }
         // });
     // }));
+=======
+
+>>>>>>> master
 
     passport.use(new FbStrategy({
     clientID: '502415123447256',
