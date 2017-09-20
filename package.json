@@ -20,14 +20,15 @@
     "express": "~4.15.2",
     "express-ejs-layouts": "^2.3.1",
     "express-session": "^1.15.5",
-    "jquery": "^3.2.1",
     "express-validator": "^4.1.1",
+    "jquery": "^3.2.1",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.11",
     "morgan": "~1.8.1",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "typed.js": "^2.0.5"
   }
 }

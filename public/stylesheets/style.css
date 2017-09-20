@@ -39,50 +39,80 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 30%;
+  padding-top: 20%;
   height: 100vh;
   width: 100vw;
-  background: #0752EA; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient( #0752EA , #0FABDA); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#0752EA, #0FABDA); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient( #0752EA, #0FABDA); /* For Firefox 3.6 to 15 */
-  background: linear-gradient( #0752EA , #0FABDA); /* Standard syntax */
+
+  background: #ddd6f3;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #faaca8, #ddd6f3);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #faaca8, #ddd6f3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+/*
+  background-color: #4158D0;
+  background-image: -webkit-linear-gradient(243deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  background-image: -o-linear-gradient(243deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  background-image: linear-gradient(333deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);*/
+
+
 }
 
  h1 {
 
-  font-size: 70px;
-  line-height: 70px;
-  margin-left: 10%;
+  font-size: 40px;
+  line-height: 40px;
   color: white;
-  text-shadow: 2px 2px 4px black;
+  text-shadow: 0px 2px 8px rgba(0,0,0,0.3);
+  width: 86%;
 }
 
 .button-wrapper {
-  /*position: absolute;*/
+  position: absolute;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
-  margin-top: 5%;
-
+  bottom: 0;
+  margin-bottom: 5%;
+  width: 86%;
 }
 
-.button-wrapper a, #login-form input {
+.button, #login-form input {
   font-size: 16px;
   font-family: 'Montserrat', sans-serif;
   border: none;
   padding: 10px;
-  width: 200px;
+  width: 100%;
+  min-height: 36px;
+  line-height: 36px;
   background-color: white;
   text-decoration: none;
   color: black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  outline: none;
+}
+
+.facebook {
+  background-color: #3b5998;
+  color: #fff;
+  box-shadow: none;
+}
+
+.noBox {
+  background-color: none;
+  height: 24px;
+  line-height: 24px;
+  color: #fff;
+}
+
+#login-form input {
+  margin-bottom: 5%;
 }
 
 #login-form  {
   margin-top: 20%;
+  width: 100%;
 }
+
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
 color: rgba(255, 255, 255, 0.5);;
 }
@@ -90,7 +120,6 @@ color: rgba(255, 255, 255, 0.5);;
 #login-form #login-password {
   color: white;
   background-color:  rgba(0, 0, 0, 0.2);
-  margin-top: 5%;
   box-shadow: none;
 }
 #login-form #login-email {
@@ -139,8 +168,8 @@ color: rgba(255, 255, 255, 0.5);;
 #today {
   font-size: 16px;
   height: 50px;
-  margin-top: 10%;
-  padding-left: 10%;
+  margin-top: 55%;
+  padding-left: 6%;
 }
 
 
@@ -169,7 +198,7 @@ color: rgba(255, 255, 255, 0.5);;
 /* The side navigation menu */
 .sidenav {
     height: 100%;
-    width: 0; /* 0 width - change this with JavaScript */
+    width: 200px;
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
     top: 0;
@@ -177,7 +206,7 @@ color: rgba(255, 255, 255, 0.5);;
     background-color: rgba(30, 30, 30, 0.85);
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    transition: 0.3s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
 /* The navigation menu links */
