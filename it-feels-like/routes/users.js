@@ -68,8 +68,8 @@ const passport = require('passport');
 //SAVE PREFERENCES TO DB
 router.post("/preferences", (req, res, next) => {
   const hotTemp = req.body.hot;
-  const idealTemp = req.body.cold;
-  const coldTemp = req.body.ideal;
+  const idealTemp = req.body.ideal;
+  const coldTemp = req.body.cold;
   const sun = req.body.sun;
   const rain = req.body.rain;
   const clouds = req.body.clouds;
@@ -89,7 +89,7 @@ router.post("/preferences", (req, res, next) => {
     wind
 
   });
-  
+
   // Update user object with attached preferences
   User.findByIdAndUpdate(currentUserId, {
     $set: {preferences : newPreferences}}, (err, userFound) => {

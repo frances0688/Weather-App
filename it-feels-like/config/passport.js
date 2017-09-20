@@ -32,9 +32,9 @@ module.exports = (passport) => {
     passport.use('local-login', new LocalStrategy({
         passReqToCallback : true
     },
-    function(req, email, password, next, done) { 
+    function(req, email, password, next, done) {
         // check in mongo if a user with username exists or not
-        User.findOne({ 'email' :  email }, 
+        User.findOne({ 'email' :  email },
         function(err, user) {
             // In case of any error, return using the done method
             if (err)
@@ -42,13 +42,14 @@ module.exports = (passport) => {
             // Username does not exist, log error & redirect back
             if (!user){
             console.log('User Not Found with email '+ email);
-            return next(null, false, { message: 'User Not found.' });                 
+            return next(null, false, { message: 'User Not found.' });
             }
-            // User exists but wrong password, log the error 
+            // User exists but wrong password, log the error
             if (!bcrypt.compareSync(password, user.password)) {
+                console.log('wonrg password');
                 return next(null, false, { message: 'Incorrect password' });
             }
-            // User and password both match, return user from 
+            // User and password both match, return user from
             // done method which will be treated like success
             return done(null, user);
             }
@@ -57,8 +58,8 @@ module.exports = (passport) => {
 
 
     passport.use('local-signup', new LocalStrategy({
-            usernameField: 'email',    
-            passReqToCallback: true 
+            usernameField: 'email',
+            passReqToCallback: true
         },
         (req, name, email, password, password2, next) => {
             console.log("fields", name, email, password, password2);
@@ -116,13 +117,13 @@ module.exports = (passport) => {
         //             // }
         //             const salt = bcrypt.genSaltSync(bcryptSalt);
         //             const hashPass = bcrypt.hashSync(password, salt);
-                
+
         //             const newUser = new User({
         //                 name,
         //                 email,
         //                 password: hashPass
         //             });
-            
+
         //             newUser.save(function(error) {
         //                 if (error) {
         //                     res.render("signup", { message: "Something went wrong" });
@@ -130,8 +131,8 @@ module.exports = (passport) => {
         //                     res.redirect("preferences")
         //                 }
         //             });
-                    
-        //     } 
+
+        //     }
         // });
     // }));
 

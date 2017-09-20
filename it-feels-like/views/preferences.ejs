@@ -4,6 +4,16 @@
 
 <form id="preferences-form-element" method="POST" cf-form>
 
+
+
+  <input type="text" id="hot" name="hot" cf-input-placeholder="30" cf-questions="Welcome! LEt's get to know you a bit. &&How hot is too hot for you?"/><span>°C</span>
+
+  <input type="text" id="cold" name="cold" cf-input-placeholder="20"cf-questions="How cold is too cold for you?"/><span>°C</span>
+
+  <input type="text" id="ideal" name="ideal" cf-input-placeholder="16" cf-questions="What's your ideal temperature?"/><span>°C</span>
+
+
+
   <fieldset cf-questions="How do you feel about the sun?">
 
     <input type="radio" name="sun" id="sun-yes" value="1" >
@@ -71,11 +81,6 @@
 
   </fieldset>
 
-    <input type="text" id="hot" name="hot" cf-input-placeholder="30" cf-questions="How hot is too hot for you?"/><span>°C</span>
-
-    <input type="text" id="cold" name="cold" cf-input-placeholder="20"cf-questions="How cold is too cold for you?"/><span>°C</span>
-
-    <input type="text" id="ideal" name="ideal" cf-input-placeholder="16" cf-questions="What's your ideal temperature?"/><span>°C</span>
 
     <div>
       <input type="submit" value="Save">
