@@ -10,7 +10,10 @@
   <br><br>
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
-
+<br><br>
+  <label for="password">Password2</label>
+  <input id="password2" type="password" name="password2" placeholder="Confirm password">
+  
   <% if (typeof message !== "undefined") { %>
     <div class="error-message"><%= message %></div>
   <% } %>
@@ -21,7 +24,7 @@
 
 </form>
 
-<!-- <form id="my-signup-element" method="POST" cf-form >
+<!--<form id="my-signup-element" method="POST" cf-form >
 
 <input
   type="text"
