@@ -46,13 +46,13 @@ var mylong;
         $.getJSON(api, (data)=>{
 
           if (data.main.temp > userFront.idealTemp){
-          $('#today').html("It's too hot today! Stay inside");
+          $('#today').html("It's too hot for you today! Stay inside");
           }
-          else {$('#today').html("COOOOLD");}
+          else {$('#today').html("You might think its too cold today.");}
 
         });
       };
-    
+
     });
   }
 
