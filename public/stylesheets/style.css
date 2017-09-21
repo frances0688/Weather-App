@@ -83,6 +83,16 @@ h1 {
   width: 86%;
 }
 
+@media all and (min-width: 900px) {
+  h1, .button-wrapper {
+    width: 25%;
+  }
+
+  .index-wrapper {
+    padding-top: 10%;
+  }
+}
+
 .button, #login-form input {
   font-size: 16px;
   font-family: 'Montserrat', sans-serif;
@@ -96,6 +106,7 @@ h1 {
   color: black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   outline: none;
+  cursor: pointer;
 }
 
 .facebook {
@@ -141,7 +152,7 @@ color: lightgray;
 .user-wrapper {
   display: flex;
   flex-direction: column;
-  padding-top: 20%;
+  padding-top: 20px;
   height: 100vh;
   width: 100vw;
   background: #FF0055; /* For browsers that do not support gradients */
@@ -155,6 +166,18 @@ color: lightgray;
   background: #003973;
   background: -webkit-linear-gradient(to bottom, #E5E5BE, #003973);
   background: linear-gradient(to bottom, #E5E5BE, #003973);
+}
+.user-wrapper.hotbg {
+  background-color: red;
+}
+.user-wrapper.sortofhotbg {
+  background-color: orange;
+}
+.user-wrapper.sortofcoldbg {
+  background-color: lightblue;
+}
+.user-wrapper.idealbg {
+  background-color: pink;
 }
 
 .user-wrapper p {
@@ -192,13 +215,45 @@ color: lightgray;
   padding-left: 6%;
 }
 
+@media all and (min-width: 900px) {
+  .user-wrapper {
+    display: block;
+    float: left;
+    padding-top: 0;
+  }
+
+  #data {
+    width: 64%;
+    margin: 0 auto;
+    margin-top: 150px;
+
+  }
+
+  #today {
+    margin-top: 0;
+  }
+
+  #today h1 {
+    width: 64%;
+    margin: 0 auto;
+    margin-top: 150px;
+    font-size: 74px;
+    font-weight: 500;
+    line-height: 77px;
+  }
+
+  #menu {
+    margin-top: 20px;
+  }
+}
+
 .bubblingG {
 
 	text-align: center;
 	width:78px;
 	height:49px;
 	margin: auto;
-  margin-bottom: -40%;
+  margin-top: 150px;
 }
 
 .bubblingG span {
@@ -343,17 +398,27 @@ color: lightgray;
 /*********RESPONSIVE FOR DESKTOP WIDTH: MIN-850PX HEIGHT: 1024PX********/
 @media all and (min-width: 1100px) {
 
+
+
 }
 
 /* menu button */
 
 #menu {
-  margin-top: -50px;
+  margin-top: 0px;
   margin-left: 20px;
   height: 30px;
   width: 40px;
   background-repeat: no-repeat;
   background-image: url('../images/menu-icon.png');
+  display: block;
+}
+@media all and (min-width: 900px) {
+  #menu {
+    margin-top: 20px;
+  }
+
+
 }
 
 /* The side navigation menu */

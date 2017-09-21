@@ -55,16 +55,20 @@ $(document).ready(() => {
     if (userFront.degree === 'C' || userFront.degree === 'c') {
       if (celsius === userFront.idealTemp || celsius === userFront.idealTemp+1 || celsius === userFront.idealTemp-1 ){
         $('#today').html(idealmsg);
+        $('.user-wrapper').addClass(idealbg);
 
       } else if (celsius < userFront.idealTemp && celsius > userFront.coldTemp) {
         $('#today').html(sortofcoldmsg);
+        $('.user-wrapper').addClass(sortofcoldbg);
       } else if (celsius < userFront.hotTemp && celsius > userFront.idealTemp) {
         $('#today').html(sortofhotmsg);
+        $('.user-wrapper').addClass(sortofhotbg);
       } else if (celsius > userFront.hotTemp) {
         $('#today').html(hotmsg);
+        $('.user-wrapper').addClass(hotbg);
       } else {
         $('#today').html(coldmsg);
-          $('#today').toggleClass('coldbg');
+        $('.user-wrapper').addClass(coldbg);
       }
     } else {
       if (farenheit === userFront.idealTemp || farenheit === userFront.idealTemp+1 || farenheit === userFront.idealTemp-1 ){
@@ -79,7 +83,6 @@ $(document).ready(() => {
         $('#today').html(coldmsg);
       }
     }
-
   }
 
   function displayData() {
@@ -104,6 +107,11 @@ $(document).ready(() => {
         lat: position.coords.latitude,
         long: position.coords.longitude
       };
+
+      // var degree = '';
+      // if (userFront.degree === 'C' || userFront.degree === 'c') {
+      //   degree = units=[si];
+      // }
       const path = '/weather/' + userLocation.lat + '/' + userLocation.long;
 
       $.getJSON(path, (response) => {
