@@ -238,3 +238,31 @@ color: rgba(255, 255, 255, 0.5);;
 /* #conversational-form > div > cf-chat > scrollable > cf-chat-response > thumb {
   background-image: url(../images/Luis1.png);
 } */
+
+#conversational-form > div > cf-chat > scrollable > .robot > thumb {
+  background-image: url('../images/Luis1.png') !important;
+  width: 50px !important;
+  height: 75px !important;
+  border-radius: none !important;
+}
+
+#conversational-form > div > cf-chat > scrollable > .robot > text > p {
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+#conversational-form > div > cf-chat > scrollable > .user > thumb {
+  background-image: url('../images/Luis1.png') !important;
+  width: 50px !important;
+  height: 75px !important;
+  border-radius: none !important;
+}
+
+#conversational-form > div > cf-chat > scrollable > cf-chat-response > text > p {
+  
+  background-image: linear-gradient(327deg, #8EC5FC 0%, #E0C3FC 100%);
+  
+  color: white;
+  ;
+}
+
