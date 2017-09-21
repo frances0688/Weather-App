@@ -55,6 +55,7 @@ $(document).ready(() => {
     if (userFront.degree === 'C' || userFront.degree === 'c') {
       if (celsius === userFront.idealTemp || celsius === userFront.idealTemp+1 || celsius === userFront.idealTemp-1 ){
         $('#today').html(idealmsg);
+
       } else if (celsius < userFront.idealTemp && celsius > userFront.coldTemp) {
         $('#today').html(sortofcoldmsg);
       } else if (celsius < userFront.hotTemp && celsius > userFront.idealTemp) {
@@ -63,6 +64,7 @@ $(document).ready(() => {
         $('#today').html(hotmsg);
       } else {
         $('#today').html(coldmsg);
+          $('#today').toggleClass('coldbg');
       }
     } else {
       if (farenheit === userFront.idealTemp || farenheit === userFront.idealTemp+1 || farenheit === userFront.idealTemp-1 ){
