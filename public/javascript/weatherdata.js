@@ -3,6 +3,9 @@ $(document).ready(()=>{
 var mylat;
 var mylong;
 
+
+
+
   //This is to get the geolocation. We need to change this to be more accurate. Use google maps api?
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -14,25 +17,19 @@ var mylong;
       mylat = userLocation.lat;
       mylong = userLocation.long;
 
-      const apistart = 'http://api.openweathermap.org/data/2.5/weather?';
-
-      const appid = '&appid=964a6f877163808007380a84cce012ac'; //this is the api key
-      const coordinates = 'lat='+mylat+'&lon='+mylong+'&cnt=10';
-      const celcius = '&units=metric';
-
-
-      const api = apistart + coordinates + appid + celcius;
-
+      // const apistart = 'https://api.darksky.net/forecast/1c83839d4af713d84a99d1f0ca8832aa/';
+      // const coordinates = mylat+','+mylong;
+      //
+      //
+      //
+      // const api = apistart + coordinates;
+      // console.log(api)
       //This is to get the data from API according to user location
       getDataByCoordinates = ()=> {
 
-        $.getJSON(api, (data)=>{
-          $('#data').html(`It's ${data.weather[0].description} in ${data.name}!
-            <br> temperature: ${(data.main.temp).toFixed(1)}°C
-            <br> humidity: ${data.main.humidity}%
-            <br> Wind speed: ${data.wind.speed} m/s
-            <br> Wind direction: ${data.wind.deg} degrees`);
-
+        $.getJSON('https://api.darksky.net/forecast/1c83839d4af713d84a99d1f0ca8832aa/41.3977558,2.1906103999999997', (data)=>{
+          // $('#data').html(`It's ${data}!`);
+          console.log(data);
         });
       };
 
