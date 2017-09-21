@@ -1,4 +1,3 @@
-
 /*
 font-family: 'Heebo', sans-serif;
 font-family: 'Cabin', sans-serif;
@@ -22,12 +21,12 @@ background: -webkit-linear-gradient(to bottom, #859398, #283048);   Chrome 10-25
 background: linear-gradient(to bottom, #859398, #283048);  W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 
-
 *, *:after, *:before{
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
+
 
 body {
   padding: 0;
@@ -64,6 +63,7 @@ body {
   background: -webkit-linear-gradient(to bottom, #859398, #283048);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, #859398, #283048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
 
 
  h1 {
@@ -141,15 +141,16 @@ color: rgba(255, 255, 255, 0.5);;
   margin-top: 10%;
 }
 
+
+
 .user-wrapper {
   display: flex;
   flex-direction: column;
-
   padding-top: 20%;
   height: 100vh;
   width: 100vw;
   background: #FF0055; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient( #FF0054 , #FFCD00); /* For Safari 5.1 to 6.0 */
+  background: -webkit-linear-gradient( #FF0055 , #FFCD00); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#FF0055, #FFCD00); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient( #FF0055, #FFCD00); /* For Firefox 3.6 to 15 */
   background: linear-gradient( #FF0055 , #FFCD00); /* Standard syntax */
@@ -180,6 +181,7 @@ color: rgba(255, 255, 255, 0.5);;
 }
 
 
+
 /**********RESPONSIVE FOR IPAD  WIDTH: 764PX HEIGHT: 1024P*********/
 @media all and (min-width: 700px) {
 
@@ -188,6 +190,10 @@ color: rgba(255, 255, 255, 0.5);;
 @media all and (min-width: 1100px) {
 
 }
+
+
+
+
 
 #menu {
   margin-top: -50px;
@@ -221,6 +227,7 @@ color: rgba(255, 255, 255, 0.5);;
     display: block;
     transition: 0.3s
 }
+
 
 .sidenav a:hover, .offcanvas a:focus{
     color: #f1f1f1;
@@ -268,4 +275,3 @@ color: rgba(255, 255, 255, 0.5);;
   color: white;
   ;
 }
-

@@ -18,6 +18,8 @@ const User             = require('./models/user');
 const expressValidator = require('express-validator');
 const typed            = require('typed.js');
 
+const https = require('https');
+
 const app = express();
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -71,9 +73,38 @@ const users = require('./routes/users');
 app.use('/', authRoutes);
 app.use('/', index);
 app.use('/', users);
-// app.use('/', passportRoutes);
 
+app.get('/weather/:lat/:long', function(req, res) {
 
+  var domain = 'api.darksky.net';
+  var apiKey = '1c83839d4af713d84a99d1f0ca8832aa';
+
+  var path = '/forecast/' + apiKey + '/' + req.params.lat + ',' + req.params.long;
+  var options = {
+      hostname: domain,
+      path: path,
+      port: 443,
+      method: 'GET'
+  };
+
+  console.log('request weather', domain, path);
+
+  var string = '';
+  var request = https.request(options, function(response){
+    response.on('data', (buffer) => {
+      string += buffer.toString();
+    });
+    response.on('end', () => {
+      console.log('weather response');
+      var object = JSON.parse(string);
+      res.json(object);
+    });
+
+  });
+
+  request.on('error', (error) => next(error));
+  request.end();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -87,6 +118,8 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  console.error(req.method + ' ' + req.path + ' ERROR:', err);
 
   // render the error page
   res.status(err.status || 500);
