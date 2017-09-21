@@ -19,6 +19,7 @@ const isAuthenticated = function (req, res, next) {
     return next();
   res.redirect('/');
 };
+
 //Get User Page
 authRoutes.get('/user', isAuthenticated, function(req, res, next){
   if (!req.user.preferences) {
@@ -28,13 +29,8 @@ authRoutes.get('/user', isAuthenticated, function(req, res, next){
   res.render('user', { user: req.user });
 });
 
-function test(req, res, next) {
-  console.log('test');
-  next();
-}
-
 // Login Post
-authRoutes.post('/login', test, passport.authenticate('local-login', {
+authRoutes.post('/login', passport.authenticate('local-login', {
   successRedirect: '/user',
   failureRedirect: '/',
 }));

@@ -15,6 +15,7 @@
     "conversational-form": "^0.9.51",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
+    "dotenv": "^4.0.0",
     "ejs": "~2.5.6",
     "ejs-layouts": "0.0.1",
     "express": "~4.15.2",
