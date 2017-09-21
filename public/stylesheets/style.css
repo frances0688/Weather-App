@@ -60,9 +60,9 @@ body {
   height: 100vh;
   width: 100vw;
 
-  background: #ddd6f3;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #faaca8, #ddd6f3);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #faaca8, #ddd6f3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #283048;;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #859398, #283048);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #859398, #283048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 
@@ -249,19 +249,22 @@ color: rgba(255, 255, 255, 0.5);;
 #conversational-form > div > cf-chat > scrollable > .robot > text > p {
   margin-left: 20px;
   font-size: 18px;
+  background-color: #376CD7;
+  color: white;
 }
 
 #conversational-form > div > cf-chat > scrollable > .user > thumb {
-  background-image: url('../images/Luis1.png') !important;
+  background-image: url('../images/bird-icon.png') !important;
   width: 50px !important;
   height: 75px !important;
   border-radius: none !important;
 }
 
-#conversational-form > div > cf-chat > scrollable > cf-chat-response > text > p {
-  
-  background-image: linear-gradient(327deg, #8EC5FC 0%, #E0C3FC 100%);
-  
+#conversational-form > div > cf-chat > scrollable > .user > text > p {
+  margin-right: 20px;
+  font-size: 18px;
+  background-color: #EC8F24;
+  /* background-image: linear-gradient(327deg, #8EC5FC 0%, #E0C3FC 100%); */
   color: white;
   ;
 }
