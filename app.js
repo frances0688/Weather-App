@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express          = require('express');
 const path             = require('path');
 const favicon          = require('serve-favicon');
@@ -17,10 +18,9 @@ const User             = require('./models/user');
 const expressValidator = require('express-validator');
 const typed            = require('typed.js');
 
-
 const app = express();
 
-mongoose.connect("mongodb://localhost/it-feels-like", {useMongoClient: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 
 // view engine setup

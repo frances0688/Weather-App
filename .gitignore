@@ -31,3 +31,6 @@ npm-debug.log
 
 # editor trash
 .DS_Store
+
+#
+.env
