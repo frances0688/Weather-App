@@ -6,12 +6,16 @@ $(document).ready(() => {
   function uiReady() {
     $('#msgBtn').removeClass('disabled');
     $('#dataBtn').removeClass('disabled');
+    $('.bubblingG').hide();
     // also hide the spinner
   }
 
   //Function to check if temp is higher or lower than user prefers
   //And send a message according to that
   function messageToday () {
+    const celsius = (weatherData.currently.temperature - 32) * (5/9);
+    const farenheit = weatherData.currently.temperature;
+
 
     var coldArray =   [
           "<h1>It's so cold outside I actually saw a gangsta pull up his pants.</h1>",
@@ -48,22 +52,47 @@ $(document).ready(() => {
         ];
     var sortofhotmsg = sortofhotArray[Math.floor(Math.random() * sortofhotArray.length)];
 
-    console.log('actual temp', weatherData.main.temp);
-    if (weatherData.main.temp === userFront.idealTemp || weatherData.main.temp === userFront.idealTemp+1 || weatherData.main.temp === userFront.idealTemp-1 ){
-      $('#today').html(idealmsg);
-    } else if (weatherData.main.temp < userFront.idealTemp && weatherData.main.temp > userFront.coldTemp) {
-      $('#today').html(sortofcoldmsg);
-    } else if (weatherData.main.temp < userFront.hotTemp && weatherData.main.temp > userFront.idealTemp) {
-      $('#today').html(sortofhotmsg);
-    } else if (weatherData.main.temp > userFront.hotTemp) {
-      $('#today').html(hotmsg);
+    if (userFront.degree === 'C' || userFront.degree === 'c') {
+      if (celsius === userFront.idealTemp || celsius === userFront.idealTemp+1 || celsius === userFront.idealTemp-1 ){
+        $('#today').html(idealmsg);
+      } else if (celsius < userFront.idealTemp && celsius > userFront.coldTemp) {
+        $('#today').html(sortofcoldmsg);
+      } else if (celsius < userFront.hotTemp && celsius > userFront.idealTemp) {
+        $('#today').html(sortofhotmsg);
+      } else if (celsius > userFront.hotTemp) {
+        $('#today').html(hotmsg);
+      } else {
+        $('#today').html(coldmsg);
+      }
     } else {
-      $('#today').html(coldmsg);
+      if (farenheit === userFront.idealTemp || farenheit === userFront.idealTemp+1 || farenheit === userFront.idealTemp-1 ){
+        $('#today').html(idealmsg);
+      } else if (farenheit < userFront.idealTemp && farenheit > userFront.coldTemp) {
+        $('#today').html(sortofcoldmsg);
+      } else if (farenheit < userFront.hotTemp && farenheit > userFront.idealTemp) {
+        $('#today').html(sortofhotmsg);
+      } else if (farenheit > userFront.hotTemp) {
+        $('#today').html(hotmsg);
+      } else {
+        $('#today').html(coldmsg);
+      }
     }
-  };
+
+  }
 
   function displayData() {
-    console.log(weatherData);
+    const celsius = (weatherData.currently.temperature - 32) * (5/9);
+    const feelsLikeCelsius = (weatherData.currently.apparentTemperature - 32) * (5/9);
+    const chanceOfRain = weatherData.currently.precipProbability*100;
+    const humidity = weatherData.currently.humidity*100;
+
+    if (userFront.degree === 'C' || userFront.degree === 'c')
+    {
+      $('#data').html("<span class='bigTemp'>" + celsius.toFixed(1) +"°C</span><br> It feels like "  + feelsLikeCelsius.toFixed(1) + "°C <br><br><span class='dataMsg'> Today it's " + weatherData.currently.summary + "<br><br> </span> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph"  );
+    } else {
+      $('#data').html("<span class='bigTemp'>" + weatherData.currently.temperature.toFixed(1) +"°F</span><br> It feels like "  + weatherData.currently.apparentTemperature.toFixed(1) + "°F <br><br><span class='dataMsg'> Today it's " + weatherData.currently.summary + "<br><br> </span> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph"  );
+    }
+
   }
 
   //This is to get the geolocation. We need to change this to be more accurate. Use google maps api?
@@ -87,12 +116,8 @@ $(document).ready(() => {
     if ($('#msgBtn').hasClass('disabled')) {
       return;
     }
-    console.log('clicking clicking');
-    console.log(
-      userFront.idealTemp, 'ideal',
-       userFront.coldTemp, 'cold',
-     userFront.hotTemp, 'hot'  );
-    $( "#data" ).empty();
+    $( "#today" ).show();
+    $( "#data" ).hide();
     closeNav();
     messageToday();
   });
@@ -102,7 +127,8 @@ $(document).ready(() => {
       return;
     }
     closeNav();
-    $( "#today" ).empty();
+    $( "#data" ).show();
+    $( "#today" ).hide();
     displayData();
   });
 
