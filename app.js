@@ -15,8 +15,7 @@ const MongoStore       = require('connect-mongo')(session);
 const configPassport   = require('./config/passport');
 const User             = require('./models/user');
 const expressValidator = require('express-validator');
-const typed           = require('typed.js');
-
+const typed            = require('typed.js');
 
 const app = express();
 
@@ -72,7 +71,6 @@ app.use('/', authRoutes);
 app.use('/', index);
 app.use('/', users);
 // app.use('/', passportRoutes);
-
 
 
 // catch 404 and forward to error handler
