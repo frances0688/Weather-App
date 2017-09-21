@@ -9,62 +9,6 @@ const bcryptSalt = 10;
 const passport = require('passport');
 
 
-
-// //GET TO THE SIGN UP PAGE
-// router.get("/signup", (req, res, next) => {
-//   res.render("signup");
-// });
-
-// //DO THE SIGN UP AND SAVE TO DB
-// router.post("/signup", (req, res, next) => {
-//   const name = req.body.name;
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   const password2 = req.body.password2;
-
-//   // Validation
-//   req.checkBody('name', { message:'Name is required'}).notEmpty(),
-//   req.checkBody('email', { message:'Email is required'}).notEmpty(),
-//   req.checkBody('email', { message:'Email is not valid'}).isEmail(),
-//   req.checkBody('password', { message:'Password is required'}).notEmpty(),
-//   req.checkBody('password2', { message:'Passwords do not match'}).equals(req.body.password),
-
-//   errors = req.validationErrors();
-
-//   if (errors){
-//     res.render ('signup',{
-//         errors: errors
-//     });
-//   }else {
-//     console.log('Passed')
-//   }
-
-//   User.findOne({email}, (err, user) => {
-//     if (user !== null) {
-//       res.render("signup", { message: "The email already exists" });
-//       return;
-//     }
-
-//     const salt = bcrypt.genSaltSync(bcryptSalt);
-//     const hashPass = bcrypt.hashSync(password, salt);
-
-//     const newUser = new User({
-//       name,
-//       email,
-//       password: hashPass
-//     });
-
-//     newUser.save(function(error) {
-//       if (error) {
-//             res.render("signup", { message: "Something went wrong" });
-//       } else {
-//           User.find({}).populate('preferences')
-//           res.redirect("preferences")
-//         }
-//     });
-//   });
-// });
-
 //SAVE PREFERENCES TO DB
 router.post("/preferences", (req, res, next) => {
   const hotTemp = req.body.hot;
@@ -75,6 +19,7 @@ router.post("/preferences", (req, res, next) => {
   const clouds = req.body.clouds;
   const snow = req.body.snow;
   const wind = req.body.wind;
+  const degree = req.body.degree;
 
 
   const currentUserId = req.session.passport.user;
@@ -86,7 +31,8 @@ router.post("/preferences", (req, res, next) => {
     rain,
     clouds,
     snow,
-    wind
+    wind,
+    degree
 
   });
 

@@ -4,6 +4,7 @@ const User = require('./user');
 
 
 const preferencesSchema = new Schema({
+  degree: { type: String, required: true },
   sun: { type: Number, required: true },
   rain: { type: Number, required: true },
   clouds: { type: Number, required: true },

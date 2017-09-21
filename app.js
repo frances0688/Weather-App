@@ -61,8 +61,8 @@ app.use( (req, res, next) => {
   next();
 });
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Routes
 // const passportRoutes = require('./config/passport');
