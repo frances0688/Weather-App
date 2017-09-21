@@ -20,6 +20,7 @@ var mylong;
       const coordinates = 'lat='+mylat+'&lon='+mylong+'&cnt=10';
       const celcius = '&units=metric';
 
+
       const api = apistart + coordinates + appid + celcius;
 
       //This is to get the data from API according to user location
@@ -55,7 +56,9 @@ var mylong;
           else {$('#today').html("<h1>It's freezing outside. Stay in bed.</h1>");}
         });
       };
-
+      if (coordinates){
+        messageToday();
+      }
     });
   }
 

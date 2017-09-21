@@ -1,3 +1,28 @@
+
+/*
+font-family: 'Heebo', sans-serif;
+font-family: 'Cabin', sans-serif;
+font-family: 'Montserrat', sans-serif;
+*/
+
+/*ORANGE GRADIENT FOR SUN?
+background: #e65c00;  fallback for old browsers
+background: -webkit-linear-gradient(to bottom, #F9D423, #e65c00);   Chrome 10-25, Safari 5.1-6
+background: linear-gradient(to bottom, #F9D423, #e65c00);  W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+/*BLUE GRADIENT FOR COLD?
+background: #003973;   fallback for old browsers
+background: -webkit-linear-gradient(to bottom, #E5E5BE, #003973);  Chrome 10-25, Safari 5.1-6
+background: linear-gradient(to bottom, #E5E5BE, #003973); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+/*TITANIUM GREY GRADIENT
+background: #283048;   fallback for old browsers
+background: -webkit-linear-gradient(to bottom, #859398, #283048);   Chrome 10-25, Safari 5.1-6
+background: linear-gradient(to bottom, #859398, #283048);  W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
 *, *:after, *:before{
   box-sizing: border-box;
   padding: 0;
@@ -39,6 +64,7 @@ body {
   background: -webkit-linear-gradient(to top, #faaca8, #ddd6f3);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #faaca8, #ddd6f3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
 
  h1 {
 
@@ -179,7 +205,7 @@ color: rgba(255, 255, 255, 0.5);;
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
     top: 0;
-    left: 0;
+    left: -200px;
     background-color: rgba(30, 30, 30, 0.85);
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
