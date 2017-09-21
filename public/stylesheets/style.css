@@ -27,7 +27,6 @@ background: linear-gradient(to bottom, #859398, #283048);  W3C, IE 10+/ Edge, Fi
   margin: 0;
 }
 
-
 body {
   padding: 0;
   margin: 0;
@@ -64,9 +63,7 @@ body {
   background: linear-gradient(to bottom, #859398, #283048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-
-
- h1 {
+h1 {
 
   font-size: 40px;
   line-height: 40px;
@@ -124,7 +121,7 @@ body {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-color: rgba(255, 255, 255, 0.5);;
+color: lightgray;
 }
 
 #login-form #login-password {
@@ -140,8 +137,6 @@ color: rgba(255, 255, 255, 0.5);;
 #login-form #login {
   margin-top: 10%;
 }
-
-
 
 .user-wrapper {
   display: flex;
@@ -180,8 +175,6 @@ color: rgba(255, 255, 255, 0.5);;
   padding-left: 6%;
 }
 
-
-
 /**********RESPONSIVE FOR IPAD  WIDTH: 764PX HEIGHT: 1024P*********/
 @media all and (min-width: 700px) {
 
@@ -190,10 +183,6 @@ color: rgba(255, 255, 255, 0.5);;
 @media all and (min-width: 1100px) {
 
 }
-
-
-
-
 
 #menu {
   margin-top: -50px;
@@ -228,7 +217,6 @@ color: rgba(255, 255, 255, 0.5);;
     transition: 0.3s
 }
 
-
 .sidenav a:hover, .offcanvas a:focus{
     color: #f1f1f1;
 }
@@ -242,9 +230,10 @@ color: rgba(255, 255, 255, 0.5);;
     margin-left: 50px;
 }
 
-/* #conversational-form > div > cf-chat > scrollable > cf-chat-response > thumb {
-  background-image: url(../images/Luis1.png);
-} */
+#conversational-form > div > cf-input > textarea {
+  color: slategray;
+  font-family: 'Montserrat', sans-serif;
+}
 
 #conversational-form > div > cf-chat > scrollable > .robot > thumb {
   background-image: url('../images/Luis1.png') !important;
@@ -256,12 +245,13 @@ color: rgba(255, 255, 255, 0.5);;
 #conversational-form > div > cf-chat > scrollable > .robot > text > p {
   margin-left: 20px;
   font-size: 18px;
-  background-color: #376CD7;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #2b334b;
   color: white;
 }
 
 #conversational-form > div > cf-chat > scrollable > .user > thumb {
-  background-image: url('../images/bird-icon.png') !important;
+  background-image: url('../images/Micaela.png') !important;
   width: 50px !important;
   height: 75px !important;
   border-radius: none !important;
@@ -270,8 +260,12 @@ color: rgba(255, 255, 255, 0.5);;
 #conversational-form > div > cf-chat > scrollable > .user > text > p {
   margin-right: 20px;
   font-size: 18px;
-  background-color: #EC8F24;
-  /* background-image: linear-gradient(327deg, #8EC5FC 0%, #E0C3FC 100%); */
+  font-family: 'Montserrat', sans-serif;
+  background-color: #849297;
   color: white;
   ;
+}
+
+#conversational-form > div > cf-input > cf-input-control-elements > cf-list > cf-radio-button > div {
+  font-size: 22px;
 }

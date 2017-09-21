@@ -1,43 +1,34 @@
-<!--  YES = 1
-      NO = -1
-      DON'T CARE = 0    -->
-
 <form id="preferences-form-element" method="POST" cf-form>
 
-<<<<<<< HEAD
+  <input type="text" id="degree" name="degree" cf-input-placeholder="C or F" cf-questions="People! Welcome to our awesome weather app, It Feels Like...&&Let's set up your weather preferences.&&Do you prefer Celsius or Fahrenheit?"/>
 
+  <input type="text" id="hot" name="hot" cf-input-placeholder="30" cf-questions="What temperature do you consider too hot?"/>
 
-  <input type="text" id="hot" name="hot" cf-input-placeholder="30" cf-questions="Welcome! LEt's get to know you a bit. &&How hot is too hot for you?&&...in Celsius"/>
-=======
-  <input type="text" id="hot" name="hot" cf-input-placeholder="30" cf-questions="Welcome! LEt's get to know you a bit. &&How hot is too hot for you?"/><span>°C</span>
->>>>>>> master
+  <input type="text" id="cold" name="cold" cf-input-placeholder="15"cf-questions="What temperature do you consider too cold?"/>
 
-  <input type="text" id="cold" name="cold" cf-input-placeholder="20"cf-questions="How cold is too cold for you?"/>
-
-  <input type="text" id="ideal" name="ideal" cf-input-placeholder="16" cf-questions="What's your ideal temperature?"/>
+  <input type="text" id="ideal" name="ideal" cf-input-placeholder="25" cf-questions="What's your ideal temperature?"/>
 
 
 
-  <fieldset cf-questions="How do you feel about the sun?">
+  <fieldset cf-questions="Do you like sunny days?">
 
-    <input cf-label="yes" type="radio" name="sun" id="sun-yes" value="1" >
+    <input cf-label="&#x1F44D" type="radio" name="sun" id="sun-yes" value="1" >
 
+    <input cf-label="&#x1F44E" type="radio" name="sun" id="sun-no" value="-1" >
 
-    <input cf-label="no" type="radio" name="sun" id="sun-no" value="-1" >
-
-    <input cf-label="I don't care" type="radio" name="sun" id="sun-dontcare" value="0" >
+    <input cf-label="&#x1F610" type="radio" name="sun" id="sun-dontcare" value="0" >
 
 
   </fieldset>
 
 
-  <fieldset cf-questions="Do you like the rain?">
+  <fieldset cf-questions="Do you like rainy days?">
 
-    <input cf-label="yes" type="radio" name="rain" id="rain-yes" value="1">
+    <input cf-label="&#x1F44D" type="radio" name="rain" id="rain-yes" value="1">
 
-    <input cf-label="no" type="radio" name="rain" id="rain-no" value="-1">
+    <input cf-label="&#x1F44E" type="radio" name="rain" id="rain-no" value="-1">
 
-    <input cf-label="I don't care" type="radio" name="rain" value="0" id="rain-dontcare">
+    <input cf-label="&#x1F610" type="radio" name="rain" value="0" id="rain-dontcare">
 
 
   </fieldset>
@@ -45,34 +36,34 @@
 
   <fieldset cf-questions="Do you like cloudy days?">
 
-    <input cf-label="yes" type="radio" name="clouds" value="1" id="clouds-yes">
+    <input cf-label="&#x1F44D" type="radio" name="clouds" value="1" id="clouds-yes">
 
-    <input cf-label="no" type="radio" name="clouds" value="-1" id="clouds-no">
+    <input cf-label="&#x1F44E" type="radio" name="clouds" value="-1" id="clouds-no">
 
-    <input cf-label="I don't care" type="radio" name="clouds" value="0" id="clouds-dontcare">
+    <input cf-label="&#x1F610" type="radio" name="clouds" value="0" id="clouds-dontcare">
 
   </fieldset>
 
 
   <fieldset cf-questions="Do you like snow?">
 
-    <input cf-label="yes" type="radio" name="snow" value="1" id="snow-yes">
+    <input cf-label="&#x1F44D" type="radio" name="snow" value="1" id="snow-yes">
 
-    <input cf-label="no" type="radio" name="snow" value="-1" id="snow-no">
+    <input cf-label="&#x1F44E" type="radio" name="snow" value="-1" id="snow-no">
 
-    <input cf-label="I don't care" type="radio" name="snow" value="0" id="snow-dontcare">
+    <input cf-label="&#x1F610" type="radio" name="snow" value="0" id="snow-dontcare">
 
 
   </fieldset>
 
 
-  <fieldset cf-questions="Do you care about the wind?">
+  <fieldset cf-questions="Do you like windy days?">
 
-    <input cf-label="yes" type="radio" name="wind" value="1" id="wind-yes">
+    <input cf-label="&#x1F44D" type="radio" name="wind" value="1" id="wind-yes">
 
-    <input cf-label="no" type="radio" name="wind" value="-1" id="wind-no">
+    <input cf-label="&#x1F44E" type="radio" name="wind" value="-1" id="wind-no">
 
-    <input cf-label="I don't care" type="radio" name="wind" value="0" id="wind-dontcare">
+    <input cf-label="&#x1F610" type="radio" name="wind" value="0" id="wind-dontcare">
 
   </fieldset>
 
