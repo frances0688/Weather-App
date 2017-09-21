@@ -15,7 +15,7 @@ const MongoStore       = require('connect-mongo')(session);
 const configPassport   = require('./config/passport');
 const User             = require('./models/user');
 const expressValidator = require('express-validator');
-const typed           = require('typed.js');
+const typed            = require('typed.js');
 
 
 const app = express();
