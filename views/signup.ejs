@@ -1,4 +1,4 @@
-
+<div id="signup-wrapper">
 <form id="my-signup-element" method="POST" action="/signup" cf-form >
 
 <input
@@ -28,3 +28,20 @@
   <input type="submit" value="">
 
 </form>
+
+<script>
+$(function () {
+  var $form= $("#my-signup-element");
+  var form = new cf.ConversationalForm({
+    // HTMLFormElement
+    formEl: $form[0],
+    preventAutoStart: true
+  });
+
+  $form.on("submit", function () {
+    $("#signup-wrapper").addClass("hide");
+  });
+});
+</script>
+
+</div>

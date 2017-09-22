@@ -75,10 +75,9 @@ $(document).ready(() => {
   //Function to check if temp is higher or lower than user prefers
   //And send a message according to that
   function messageToday () {
-    console.log(userFront.sun, userFront.idealTemp);
+
     const celsius = (weatherData.currently.temperature - 32) * (5/9);
     const fahrenheit = weatherData.currently.temperature;
-
 
     var coldArray =   [
           "<h1>It's so cold outside I actually saw a gangsta pull up his pants.</h1>",
@@ -118,19 +117,20 @@ $(document).ready(() => {
     if (userFront.degree === 'C' || userFront.degree === 'c') {
       if (userFront.idealTemp <= celsius && celsius <= userFront.idealTemp+2){
         $('#today').html(idealmsg);
-        $('.user-wrapper').addClass(idealbg);
+        $( ".user-wrapper" ).toggleClass( 'idealbg' );
       } else if (celsius < userFront.idealTemp-2 && celsius > userFront.idealTemp-8) {
         $('#today').html(sortofcoldmsg);
-        $('.user-wrapper').addClass(sortofcoldbg);
+          $( ".user-wrapper" ).toggleClass( 'sortofcoldbg' );
       } else if (celsius < userFront.idealTemp+8 && celsius > userFront.idealTemp+2) {
         $('#today').html(sortofhotmsg);
-        $('.user-wrapper').addClass(sortofhotbg);
+        $( ".user-wrapper" ).toggleClass( 'sortofhotbg' );
       } else if (celsius > userFront.idealTemp+8) {
         $('#today').html(hotmsg);
-        $('.user-wrapper').addClass(hotbg);
+          $( ".user-wrapper" ).toggleClass( 'hotbg' );
       } else {
         $('#today').html(coldmsg);
-        $('.user-wrapper').addClass(coldbg);
+          $( ".user-wrapper" ).toggleClass( 'coldbg');
+
       }
     } else {
       if (userFront.idealTemp-5 <= fahrenheit <= userFront.idealTemp+5){
@@ -147,6 +147,7 @@ $(document).ready(() => {
     }
   }
 
+
   function getWeather() {
     const path = '/weather/' + userLocation.lat + '/' + userLocation.long;
     $.getJSON(path, (response) => {
@@ -156,6 +157,7 @@ $(document).ready(() => {
         $('#msgBtn').trigger('click');
       });      
     });
+
   }
 
   function displayData() {
