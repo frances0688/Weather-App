@@ -162,21 +162,21 @@ color: lightgray;
   background: linear-gradient( #FF0055 , #FFCD00); /* Standard syntax */
 }
 
-.user-wrapper.coldbg {
+.coldbg {
   background: #003973;
   background: -webkit-linear-gradient(to bottom, #E5E5BE, #003973);
   background: linear-gradient(to bottom, #E5E5BE, #003973);
 }
-.user-wrapper.hotbg {
+.hotbg {
   background-color: red;
 }
-.user-wrapper.sortofhotbg {
+.sortofhotbg {
   background-color: orange;
 }
-.user-wrapper.sortofcoldbg {
+.sortofcoldbg {
   background-color: lightblue;
 }
-.user-wrapper.idealbg {
+.idealbg {
   background-color: pink;
 }
 
@@ -188,7 +188,7 @@ color: lightgray;
 #data {
   font-size: 24px;
   height: 70px;
-  margin-top: 45%;
+  margin-top: 35%;
   padding-left: 6%;
   color: white;
 }
@@ -201,7 +201,7 @@ color: lightgray;
 }
 
 #data .bigTemp {
-  font-size: 70px;
+  font-size: 90px;
   line-height: 40px;
   color: white;
   text-shadow: 0px 2px 8px rgba(0,0,0,0.3);
@@ -225,7 +225,7 @@ color: lightgray;
   #data {
     width: 64%;
     margin: 0 auto;
-    margin-top: 150px;
+    margin-top: 100px;
 
   }
 
@@ -249,12 +249,13 @@ color: lightgray;
 
 /*LOADER ANIMATION*/
 .bubblingG {
-
+  position: relative;
+  top: 150px;
 	text-align: center;
 	width:78px;
 	height:49px;
 	margin: auto;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 .bubblingG span {
@@ -413,6 +414,8 @@ color: lightgray;
   background-repeat: no-repeat;
   background-image: url('../images/menu-icon.png');
   display: block;
+  z-index: 99;
+
 }
 @media all and (min-width: 900px) {
   #menu {
@@ -466,6 +469,17 @@ color: lightgray;
 #today.coldbg{
   background-color: black;
 }
+
+.hide {
+display: hidden !important;
+height: 100vh;
+width: 100vw;
+background-color: red;
+position: absolute !important;
+
+
+}
+
 #conversational-form > div > cf-input > textarea {
   color: slategray;
   font-family: 'Montserrat', sans-serif;
