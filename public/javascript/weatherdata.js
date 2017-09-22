@@ -3,12 +3,6 @@ $(document).ready(() => {
   var userLocation;
   var weatherData;
 
-  // function getReady() {
-  //   console.log("im waiting")
-  //   $('.hide').removeClass('hide');
-  // }
-  // setTimeout(getReady, 1000);
-
   function uiReady() {
     $('#msgBtn').removeClass('disabled');
     $('#dataBtn').removeClass('disabled');
@@ -128,9 +122,9 @@ $(document).ready(() => {
 
     if (userFront.degree === 'C' || userFront.degree === 'c')
     {
-      $('#data').html("<span class='dataMsg'> Today it's " + weatherData.currently.summary + "</span><br><br><br><span class='bigTemp'>" + celsius.toFixed(1) +"°C</span><br><br><br> It feels like "  + feelsLikeCelsius.toFixed(1) + "°C <br> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph"  );
+      $('#data').html("<span class='dataMsg'> Today, it's " + weatherData.currently.summary + "</span><br><br><br><span class='bigTemp'>" + celsius.toFixed(1) +"°C</span><br><br><br> It feels like "  + feelsLikeCelsius.toFixed(1) + "°C <br> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph"  );
     } else {
-      $('#data').html("<span class='dataMsg'> Today it's " + weatherData.currently.summary + "</span> <br><br><br><span class='bigTemp'>" + weatherData.currently.temperature.toFixed(1) +"°F</span><br> It feels like "  + weatherData.currently.apparentTemperature.toFixed(1) + "°F <br><br><br> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph"  );
+      $('#data').html("<span class='dataMsg'> Today, it's " + weatherData.currently.summary + "</span> <br><br><br><span class='bigTemp'>" + weatherData.currently.temperature.toFixed(1) +"°F</span><br> It feels like "  + weatherData.currently.apparentTemperature.toFixed(1) + "°F <br><br><br> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph"  );
     }
 
   }
