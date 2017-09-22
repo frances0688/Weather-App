@@ -3,6 +3,12 @@ $(document).ready(() => {
   var userLocation;
   var weatherData;
 
+  // function getReady() {
+  //   console.log("im waiting")
+  //   $('.hide').removeClass('hide');
+  // }
+  // setTimeout(getReady, 1000);
+
   function uiReady() {
     $('#msgBtn').removeClass('disabled');
     $('#dataBtn').removeClass('disabled');
@@ -63,7 +69,7 @@ $(document).ready(() => {
 
     var idealArray =   [
           "<h1>The day is perfect. Enjoy!</h1>",
-          "<h1>The weather Gods have listened.</h1>",
+          "<h1>The Weather-Gods have listened.</h1>",
           "<h1>What a wonderful day...</h1>"
         ];
     var idealmsg = idealArray[Math.floor(Math.random() * idealArray.length)];
@@ -83,17 +89,16 @@ $(document).ready(() => {
     var sortofhotmsg = sortofhotArray[Math.floor(Math.random() * sortofhotArray.length)];
 
     if (userFront.degree === 'C' || userFront.degree === 'c') {
-      if (userFront.idealTemp-3 <= celsius <= userFront.idealTemp+3){
+      if (userFront.idealTemp-2 <= celsius <= userFront.idealTemp+2){
         $('#today').html(idealmsg);
         $('.user-wrapper').addClass(idealbg);
-
-      } else if (celsius < userFront.idealTemp && celsius > userFront.coldTemp) {
+      } else if (celsius < userFront.idealTemp-2 && celsius > userFront.idealTemp-8) {
         $('#today').html(sortofcoldmsg);
         $('.user-wrapper').addClass(sortofcoldbg);
-      } else if (celsius < userFront.hotTemp && celsius > userFront.idealTemp) {
+      } else if (celsius < userFront.idealTemp+8 && celsius > userFront.idealTemp+2) {
         $('#today').html(sortofhotmsg);
         $('.user-wrapper').addClass(sortofhotbg);
-      } else if (celsius > userFront.hotTemp) {
+      } else if (celsius > userFront.idealTemp+8) {
         $('#today').html(hotmsg);
         $('.user-wrapper').addClass(hotbg);
       } else {
@@ -103,11 +108,11 @@ $(document).ready(() => {
     } else {
       if (userFront.idealTemp-5 <= fahrenheit <= userFront.idealTemp+5){
         $('#today').html(idealmsg);
-      } else if (fahrenheit < userFront.idealTemp && fahrenheit > userFront.coldTemp) {
+      } else if (fahrenheit < userFront.idealTemp && fahrenheit > userFront.idealTemp-20) {
         $('#today').html(sortofcoldmsg);
-      } else if (fahrenheit < userFront.hotTemp && fahrenheit > userFront.idealTemp) {
+      } else if (fahrenheit < userFront.idealTemp+20 && fahrenheit > userFront.idealTemp) {
         $('#today').html(sortofhotmsg);
-      } else if (fahrenheit > userFront.hotTemp) {
+      } else if (fahrenheit > userFront.idealTemp+20) {
         $('#today').html(hotmsg);
       } else {
         $('#today').html(coldmsg);
@@ -123,9 +128,9 @@ $(document).ready(() => {
 
     if (userFront.degree === 'C' || userFront.degree === 'c')
     {
-      $('#data').html("<span class='bigTemp'>" + celsius.toFixed(1) +"°C</span><br> It feels like "  + feelsLikeCelsius.toFixed(1) + "°C <br><br><span class='dataMsg'> Today it's " + weatherData.currently.summary + "<br><br> </span> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph"  );
+      $('#data').html("<span class='dataMsg'> Today it's " + weatherData.currently.summary + "</span><br><br><br><span class='bigTemp'>" + celsius.toFixed(1) +"°C</span><br><br><br> It feels like "  + feelsLikeCelsius.toFixed(1) + "°C <br> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph"  );
     } else {
-      $('#data').html("<span class='bigTemp'>" + weatherData.currently.temperature.toFixed(1) +"°F</span><br> It feels like "  + weatherData.currently.apparentTemperature.toFixed(1) + "°F <br><br><span class='dataMsg'> Today it's " + weatherData.currently.summary + "<br><br> </span> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph"  );
+      $('#data').html("<span class='dataMsg'> Today it's " + weatherData.currently.summary + "</span> <br><br><br><span class='bigTemp'>" + weatherData.currently.temperature.toFixed(1) +"°F</span><br> It feels like "  + weatherData.currently.apparentTemperature.toFixed(1) + "°F <br><br><br> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph"  );
     }
 
   }
