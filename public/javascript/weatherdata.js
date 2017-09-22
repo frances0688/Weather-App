@@ -10,11 +10,22 @@ $(document).ready(() => {
     // also hide the spinner
   }
 
+  $("#locationBtn").click(function(){
+    var geocoder =  new google.maps.Geocoder();
+    geocoder.geocode({ 'address': 'miami, us'}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        alert("location : " + results[0].geometry.location.lat() + " " +results[0].geometry.location.lng()); 
+      } else {
+        alert("Something got wrong " + status);
+      }
+    });
+  });
+
   //Function to check if temp is higher or lower than user prefers
   //And send a message according to that
   function messageToday () {
     const celsius = (weatherData.currently.temperature - 32) * (5/9);
-    const farenheit = weatherData.currently.temperature;
+    const fahrenheit = weatherData.currently.temperature;
 
 
     var coldArray =   [
@@ -53,7 +64,7 @@ $(document).ready(() => {
     var sortofhotmsg = sortofhotArray[Math.floor(Math.random() * sortofhotArray.length)];
 
     if (userFront.degree === 'C' || userFront.degree === 'c') {
-      if (celsius === userFront.idealTemp || celsius === userFront.idealTemp+1 || celsius === userFront.idealTemp-1 ){
+      if (userFront.idealTemp-3 <= celsius <= userFront.idealTemp+3){
         $('#today').html(idealmsg);
         $('.user-wrapper').addClass(idealbg);
 
@@ -71,13 +82,13 @@ $(document).ready(() => {
         $('.user-wrapper').addClass(coldbg);
       }
     } else {
-      if (farenheit === userFront.idealTemp || farenheit === userFront.idealTemp+1 || farenheit === userFront.idealTemp-1 ){
+      if (userFront.idealTemp-5 <= fahrenheit <= userFront.idealTemp+5){
         $('#today').html(idealmsg);
-      } else if (farenheit < userFront.idealTemp && farenheit > userFront.coldTemp) {
+      } else if (fahrenheit < userFront.idealTemp && fahrenheit > userFront.coldTemp) {
         $('#today').html(sortofcoldmsg);
-      } else if (farenheit < userFront.hotTemp && farenheit > userFront.idealTemp) {
+      } else if (fahrenheit < userFront.hotTemp && fahrenheit > userFront.idealTemp) {
         $('#today').html(sortofhotmsg);
-      } else if (farenheit > userFront.hotTemp) {
+      } else if (fahrenheit > userFront.hotTemp) {
         $('#today').html(hotmsg);
       } else {
         $('#today').html(coldmsg);
