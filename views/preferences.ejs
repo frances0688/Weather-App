@@ -6,7 +6,7 @@
 </div>
 
 
-<div class="hide">
+<div id="form-wrapper" class="hide">
 
   <form id="preferences-form-element" method="POST">
 
@@ -79,16 +79,19 @@
 
   <script>
   $(function () {
-    var formEl = $("#preferences-form-element")[0];
+    var $form= $("#preferences-form-element");
     var form = new cf.ConversationalForm({
     	// HTMLFormElement
-    	formEl: formEl,
+    	formEl: $form[0],
       preventAutoStart: true
     });
     window.setTimeout(function () {
       form.start();
-        $(".hide").removeClass("hide");
+        $("#form-wrapper").removeClass("hide");
     }, 2000);
+    $form.on("submit", function () {
+      $("#form-wrapper").addClass("hide");
+    });
   });
   </script>
 

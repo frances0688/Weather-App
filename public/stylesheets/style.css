@@ -155,11 +155,10 @@ color: lightgray;
   padding-top: 20px;
   height: 100vh;
   width: 100vw;
-  background: #FF0055; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient( #FF0055 , #FFCD00); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#FF0055, #FFCD00); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient( #FF0055, #FFCD00); /* For Firefox 3.6 to 15 */
-  background: linear-gradient( #FF0055 , #FFCD00); /* Standard syntax */
+  background: #283048;;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #859398, #283048);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #859398, #283048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .coldbg {
@@ -168,16 +167,26 @@ color: lightgray;
   background: linear-gradient(to bottom, #E5E5BE, #003973);
 }
 .hotbg {
-  background-color: red;
+  background: #e65c00;
+  background: -webkit-linear-gradient(to bottom, #F9D423, #e65c00);
+  background: linear-gradient(to bottom, #F9D423, #e65c00);
 }
 .sortofhotbg {
-  background-color: orange;
+  background: #ff9966;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #ff5e62, #ff9966);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #ff5e62, #ff9966); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 .sortofcoldbg {
-  background-color: lightblue;
+  background: #0cebeb;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #29ffc6, #20e3b2, #0cebeb);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #29ffc6, #20e3b2, #0cebeb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .idealbg {
-  background-color: pink;
+  background: #23074d;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #cc5333, #23074d);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #cc5333, #23074d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .user-wrapper p {
