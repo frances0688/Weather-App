@@ -18,7 +18,7 @@ $(document).ready(() => {
 
 
     var coldArray =   [
-          "<h1>It's so cold outside I actually saw a gangsta pull up his pants.</h1>",
+          "<h1>" +userFront.name+ "It's so cold outside I actually saw a gangsta pull up his pants.</h1>",
           "<h1>I bet you miss hating the summer heat right now.</h1>",
           "<h1>It's so damn cold you might fart snowflakes</h1>"
         ];
