@@ -471,13 +471,8 @@ color: lightgray;
 }
 
 .hide {
-display: hidden !important;
-height: 100vh;
-width: 100vw;
-background-color: red;
-position: absolute !important;
-
-
+  height: 0px;
+  overflow: hidden;
 }
 
 #conversational-form > div > cf-input > textarea {

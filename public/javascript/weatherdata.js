@@ -92,19 +92,19 @@ $(document).ready(() => {
     if (userFront.degree === 'C' || userFront.degree === 'c') {
       if (userFront.idealTemp <= celsius && celsius <= userFront.idealTemp+2){
         $('#today').html(idealmsg);
-        $('.user-wrapper').addClass(idealbg);
+        $( ".user-wrapper" ).toggleClass( 'idealbg', addOrRemove );
       } else if (celsius < userFront.idealTemp-2 && celsius > userFront.idealTemp-8) {
         $('#today').html(sortofcoldmsg);
-        $('.user-wrapper').addClass(sortofcoldbg);
+          $( ".user-wrapper" ).toggleClass( 'sortofcoldbg', addOrRemove );
       } else if (celsius < userFront.idealTemp+8 && celsius > userFront.idealTemp+2) {
         $('#today').html(sortofhotmsg);
-        $('.user-wrapper').addClass(sortofhotbg);
+        $( ".user-wrapper" ).toggleClass( 'sortofhotbg', addOrRemove );
       } else if (celsius > userFront.idealTemp+8) {
         $('#today').html(hotmsg);
-        $('.user-wrapper').addClass(hotbg);
+          $( ".user-wrapper" ).toggleClass( 'hotbg', addOrRemove );
       } else {
         $('#today').html(coldmsg);
-        $('.user-wrapper').addClass(coldbg);
+          $( ".user-wrapper" ).toggleClass( 'coldbg', addOrRemove );
       }
     } else {
       if (userFront.idealTemp-5 <= fahrenheit <= userFront.idealTemp+5){

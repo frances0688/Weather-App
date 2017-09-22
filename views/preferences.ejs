@@ -1,71 +1,95 @@
-<body class="hide">
-<form id="preferences-form-element" method="POST" cf-form >
+<!--THE LOADER-->
+<div class="bubblingG">
+  <span id="bubblingG_1"></span>
+  <span id="bubblingG_2"></span>
+  <span id="bubblingG_3"></span>
+</div>
 
 
-  <input type="text" id="degree" name="degree" cf-input-placeholder="C or F" cf-questions="Let's set up your weather preferences.&&Do you prefer Celsius or Fahrenheit?"/>
+<div class="hide">
 
-  <input type="text" id="ideal" name="ideal" cf-input-placeholder="25" cf-questions="What's your ideal temperature?"/>
+  <form id="preferences-form-element" method="POST">
 
+    <input type="text" id="degree" name="degree" cf-input-placeholder="C or F" cf-questions="Let's set up your weather preferences.&&Do you prefer Celsius or Fahrenheit?"/>
 
-
-  <fieldset cf-questions="Do you like sunny days?">
-
-    <input cf-label="&#x1F44D" type="radio" name="sun" id="sun-yes" value="1" >
-
-    <input cf-label="&#x1F44E" type="radio" name="sun" id="sun-no" value="-1" >
-
-    <input cf-label="&#x1F610" type="radio" name="sun" id="sun-dontcare" value="0" >
+    <input type="text" id="ideal" name="ideal" cf-input-placeholder="25" cf-questions="What's your ideal temperature?"/>
 
 
-  </fieldset>
+
+    <fieldset cf-questions="Do you like sunny days?">
+
+      <input cf-label="&#x1F44D" type="radio" name="sun" id="sun-yes" value="1" >
+
+      <input cf-label="&#x1F44E" type="radio" name="sun" id="sun-no" value="-1" >
+
+      <input cf-label="&#x1F610" type="radio" name="sun" id="sun-dontcare" value="0" >
 
 
-  <fieldset cf-questions="Do you like rainy days?">
-
-    <input cf-label="&#x1F44D" type="radio" name="rain" id="rain-yes" value="1">
-
-    <input cf-label="&#x1F44E" type="radio" name="rain" id="rain-no" value="-1">
-
-    <input cf-label="&#x1F610" type="radio" name="rain" value="0" id="rain-dontcare">
+    </fieldset>
 
 
-  </fieldset>
+    <fieldset cf-questions="Do you like rainy days?">
+
+      <input cf-label="&#x1F44D" type="radio" name="rain" id="rain-yes" value="1">
+
+      <input cf-label="&#x1F44E" type="radio" name="rain" id="rain-no" value="-1">
+
+      <input cf-label="&#x1F610" type="radio" name="rain" value="0" id="rain-dontcare">
 
 
-  <fieldset cf-questions="Do you like cloudy days?">
-
-    <input cf-label="&#x1F44D" type="radio" name="clouds" value="1" id="clouds-yes">
-
-    <input cf-label="&#x1F44E" type="radio" name="clouds" value="-1" id="clouds-no">
-
-    <input cf-label="&#x1F610" type="radio" name="clouds" value="0" id="clouds-dontcare">
-
-  </fieldset>
+    </fieldset>
 
 
-  <fieldset cf-questions="Do you like snow?">
+    <fieldset cf-questions="Do you like cloudy days?">
 
-    <input cf-label="&#x1F44D" type="radio" name="snow" value="1" id="snow-yes">
+      <input cf-label="&#x1F44D" type="radio" name="clouds" value="1" id="clouds-yes">
 
-    <input cf-label="&#x1F44E" type="radio" name="snow" value="-1" id="snow-no">
+      <input cf-label="&#x1F44E" type="radio" name="clouds" value="-1" id="clouds-no">
 
-    <input cf-label="&#x1F610" type="radio" name="snow" value="0" id="snow-dontcare">
+      <input cf-label="&#x1F610" type="radio" name="clouds" value="0" id="clouds-dontcare">
+
+    </fieldset>
 
 
-  </fieldset>
+    <fieldset cf-questions="Do you like snow?">
+
+      <input cf-label="&#x1F44D" type="radio" name="snow" value="1" id="snow-yes">
+
+      <input cf-label="&#x1F44E" type="radio" name="snow" value="-1" id="snow-no">
+
+      <input cf-label="&#x1F610" type="radio" name="snow" value="0" id="snow-dontcare">
 
 
-  <fieldset cf-questions="Do you like windy days?">
+    </fieldset>
 
-    <input cf-label="&#x1F44D" type="radio" name="wind" value="1" id="wind-yes">
 
-    <input cf-label="&#x1F44E" type="radio" name="wind" value="-1" id="wind-no">
+    <fieldset cf-questions="Do you like windy days?">
 
-    <input cf-label="&#x1F610" type="radio" name="wind" value="0" id="wind-dontcare">
+      <input cf-label="&#x1F44D" type="radio" name="wind" value="1" id="wind-yes">
 
-  </fieldset>
+      <input cf-label="&#x1F44E" type="radio" name="wind" value="-1" id="wind-no">
 
-    <input type="submit">
+      <input cf-label="&#x1F610" type="radio" name="wind" value="0" id="wind-dontcare">
 
-</form>
-</body>
+    </fieldset>
+
+      <input type="submit">
+
+  </form>
+
+  <script>
+  $(function () {
+    var formEl = $("#preferences-form-element")[0];
+    var form = new cf.ConversationalForm({
+    	// HTMLFormElement
+    	formEl: formEl,
+      preventAutoStart: true
+    });
+    window.setTimeout(function () {
+      form.start();
+        $(".hide").removeClass("hide");
+    }, 2000);
+  });
+  </script>
+
+</div>
