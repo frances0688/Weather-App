@@ -10,9 +10,7 @@ const preferencesSchema = new Schema({
   clouds: { type: Number, required: true },
   snow: { type: Number, required: true },
   wind: { type: Number, required: true },
-  hotTemp: { type: Number, required: true },
   idealTemp: { type: Number, required: true },
-  coldTemp: { type: Number, required: true },
 });
 
 const Preferences = mongoose.model("Preferences", preferencesSchema);

@@ -1,22 +1,41 @@
 $(document).ready(() => {
-
+  currentLocation();
   var userLocation;
   var weatherData;
 
   function uiReady() {
     $('#msgBtn').removeClass('disabled');
     $('#dataBtn').removeClass('disabled');
+    $('#newLocationBtn').removeClass('disabled');
     $('.bubblingG').hide();
     // also hide the spinner
   }
 
-  $("#locationBtn").click(function(){
+  //This is to get the geolocation. We need to change this to be more accurate. Use google maps api?
+  function currentLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        userLocation = {
+          lat: position.coords.latitude,
+          long: position.coords.longitude
+        };
+        getWeather();
+      });
+    }
+  }
+
+  $("#locationBtn").click(function(e){
+    e && e.preventDefault();
     var geocoder =  new google.maps.Geocoder();
-    geocoder.geocode({ 'address': 'miami, us'}, function(results, status) {
+    geocoder.geocode({ 'address': $('#pac-input').val()}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        alert("location : " + results[0].geometry.location.lat() + " " +results[0].geometry.location.lng()); 
+        userLocation ={
+          lat: results[0].geometry.location.lat(),
+          long: results[0].geometry.location.lng()
+        }
+        getWeather();
       } else {
-        alert("Something got wrong " + status);
+        alert("Something went wrong " + status);
       }
     });
   });
@@ -111,34 +130,25 @@ $(document).ready(() => {
 
   }
 
-  //This is to get the geolocation. We need to change this to be more accurate. Use google maps api?
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      userLocation = {
-        lat: position.coords.latitude,
-        long: position.coords.longitude
-      };
-
-      // var degree = '';
-      // if (userFront.degree === 'C' || userFront.degree === 'c') {
-      //   degree = units=[si];
-      // }
-      const path = '/weather/' + userLocation.lat + '/' + userLocation.long;
-
-      $.getJSON(path, (response) => {
-        weatherData = response;
-        uiReady();
-        messageToday();
-      });
-    });
+  function getWeather() {
+    const path = '/weather/' + userLocation.lat + '/' + userLocation.long;
+    
+          $.getJSON(path, (response) => {
+            weatherData = response;
+            uiReady();
+            $('#msgBtn').trigger('click');
+          });
   }
 
+
   $('#msgBtn').on('click', (e) => {
+    console.log('showing today');
     if ($('#msgBtn').hasClass('disabled')) {
       return;
     }
     $( "#today" ).show();
     $( "#data" ).hide();
+    $( "#location" ).hide();
     closeNav();
     messageToday();
   });
@@ -150,9 +160,20 @@ $(document).ready(() => {
     closeNav();
     $( "#data" ).show();
     $( "#today" ).hide();
+    $( "#location" ).hide();
     displayData();
   });
 
+  $('#newLocationBtn').on('click', (e) => {
+    if ($('#newLocationBtn').hasClass('disabled')) {
+      return;
+    }
+    closeNav();
+    $( "#data" ).hide();
+    $( "#today" ).hide();
+    $( "#location" ).show();
+    displayData();
+  });
 
 });
 //

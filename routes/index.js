@@ -12,9 +12,6 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.get('/welcome', function(req, res, next) {
-  res.render('welcome');
-});
 
 router.get('/user:id', function(req, res, next) {
   const userId = req.params.id;
@@ -29,5 +26,6 @@ router.get('/user:id', function(req, res, next) {
 router.get('/preferences',  isAuthenticated, function(req, res, next) {
   res.render('preferences');
 });
+
 
 module.exports = router;
