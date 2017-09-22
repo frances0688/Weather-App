@@ -2,11 +2,12 @@ $(document).ready(() => {
   currentLocation();
   var userLocation;
   var weatherData;
+  var cityName;
 
   function uiReady() {
     $('#msgBtn').removeClass('disabled');
     $('#dataBtn').removeClass('disabled');
-    $('#newLocationBtn').removeClass('disabled');
+    // $('#newLocationBtn').removeClass('disabled');
     $('.bubblingG').hide();
     // also hide the spinner
   }
@@ -24,21 +25,52 @@ $(document).ready(() => {
     }
   }
 
-  $("#locationBtn").click(function(e){
-    e && e.preventDefault();
+  // Get coordinates for new location
+  // $("#locationBtn").click(function(e){
+  //   e && e.preventDefault();
+  //   var geocoder =  new google.maps.Geocoder();
+  //   geocoder.geocode({ 'address': $('#pac-input').val()}, function(results, status) {
+  //     if (status == google.maps.GeocoderStatus.OK) {
+  //       userLocation ={
+  //         lat: results[0].geometry.location.lat(),
+  //         long: results[0].geometry.location.lng()
+  //       }
+  //     } else {
+  //       alert("Something went wrong " + status);
+  //     }
+  //   });
+  // });
+
+  // Get name of city
+  function getCity(lat, long, cb) {
     var geocoder =  new google.maps.Geocoder();
-    geocoder.geocode({ 'address': $('#pac-input').val()}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        userLocation ={
-          lat: results[0].geometry.location.lat(),
-          long: results[0].geometry.location.lng()
+      var latlng = new google.maps.LatLng(lat, long);
+      geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK && results[1]) {
+          var indice = 0;
+          for (var j = 0; j < results.length; j++) {
+            if (results[j].types[0] == 'locality') {
+              indice = j;
+              break;
+            }
+          }
+          for (var i=0; i < results[j].address_components.length; i++) {
+            if (results[j].address_components[i].types[0] == "locality") {
+              //this is the object you are looking for
+              city = results[j].address_components[i];
+            }
+            if (results[j].address_components[i].types[0] == "country") {
+              //this is the object you are looking for
+              country = results[j].address_components[i];
+            }
+          }
+          //city data
+          cityName = city.long_name + ", " + country.short_name;
         }
-        getWeather();
-      } else {
-        alert("Something went wrong " + status);
-      }
-    });
-  });
+        cb();
+      });
+ }
+ 
 
   //Function to check if temp is higher or lower than user prefers
   //And send a message according to that
@@ -115,31 +147,36 @@ $(document).ready(() => {
     }
   }
 
+  function getWeather() {
+    const path = '/weather/' + userLocation.lat + '/' + userLocation.long;
+    $.getJSON(path, (response) => {
+      weatherData = response;
+      getCity(userLocation.lat, userLocation.long, function () {
+        uiReady();
+        $('#msgBtn').trigger('click');
+      });      
+    });
+  }
+
   function displayData() {
     const celsius = (weatherData.currently.temperature - 32) * (5/9);
     const feelsLikeCelsius = (weatherData.currently.apparentTemperature - 32) * (5/9);
     const chanceOfRain = weatherData.currently.precipProbability*100;
     const humidity = weatherData.currently.humidity*100;
 
-    if (userFront.degree === 'C' || userFront.degree === 'c')
-    {
-      $('#data').html("<span class='dataMsg'> Today, it's " + weatherData.currently.summary + "</span><br><br><br><span class='bigTemp'>" + celsius.toFixed(1) +"°C</span><br><br><br> It feels like "  + feelsLikeCelsius.toFixed(1) + "°C <br> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph"  );
-    } else {
-      $('#data').html("<span class='dataMsg'> Today, it's " + weatherData.currently.summary + "</span> <br><br><br><span class='bigTemp'>" + weatherData.currently.temperature.toFixed(1) +"°F</span><br> It feels like "  + weatherData.currently.apparentTemperature.toFixed(1) + "°F <br><br><br> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph"  );
+    var html = "<span class='dataMsg'> Today, it's " + weatherData.currently.summary + "</span>";
+    if (cityName) {
+      html += "<br> in " + cityName;
     }
-
+    html += "<br><br><br><span class='bigTemp'>";
+    if (userFront.degree === 'C' || userFront.degree === 'c') {
+      html += celsius.toFixed(1) +"°C</span><br><br><br> It feels like "  + feelsLikeCelsius.toFixed(1) + "°C";
+    } else {
+      html += weatherData.currently.temperature.toFixed(1) +"°F</span><br><br><br> It feels like " + weatherData.currently.apparentTemperature.toFixed(1) + "°F";
+    }
+    html += "<br> Chance of rain " + chanceOfRain + "% <br> Humidity " + humidity + "% <br> Wind Speed " + weatherData.currently.windSpeed + " mph";
+    $('#data').html(html);
   }
-
-  function getWeather() {
-    const path = '/weather/' + userLocation.lat + '/' + userLocation.long;
-
-          $.getJSON(path, (response) => {
-            weatherData = response;
-            uiReady();
-            $('#msgBtn').trigger('click');
-          });
-  }
-
 
   $('#msgBtn').on('click', (e) => {
     console.log('showing today');
@@ -148,7 +185,7 @@ $(document).ready(() => {
     }
     $( "#today" ).show();
     $( "#data" ).hide();
-    $( "#location" ).hide();
+    // $( "#location" ).hide();
     closeNav();
     messageToday();
   });
@@ -160,20 +197,20 @@ $(document).ready(() => {
     closeNav();
     $( "#data" ).show();
     $( "#today" ).hide();
-    $( "#location" ).hide();
+    // $( "#location" ).hide();
     displayData();
   });
 
-  $('#newLocationBtn').on('click', (e) => {
-    if ($('#newLocationBtn').hasClass('disabled')) {
-      return;
-    }
-    closeNav();
-    $( "#data" ).hide();
-    $( "#today" ).hide();
-    $( "#location" ).show();
-    displayData();
-  });
+  // $('#newLocationBtn').on('click', (e) => {
+  //   if ($('#newLocationBtn').hasClass('disabled')) {
+  //     return;
+  //   }
+  //   closeNav();
+  //   $( "#data" ).hide();
+  //   $( "#today" ).hide();
+  //   $( "#location" ).show();
+  //   displayData();
+  // });
 
 });
 //
