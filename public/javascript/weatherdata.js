@@ -43,12 +43,13 @@ $(document).ready(() => {
   //Function to check if temp is higher or lower than user prefers
   //And send a message according to that
   function messageToday () {
+    console.log(userFront.sun, userFront.idealTemp);
     const celsius = (weatherData.currently.temperature - 32) * (5/9);
     const fahrenheit = weatherData.currently.temperature;
 
 
     var coldArray =   [
-          "<h1>" +userFront.name+ "It's so cold outside I actually saw a gangsta pull up his pants.</h1>",
+          "<h1>It's so cold outside I actually saw a gangsta pull up his pants.</h1>",
           "<h1>I bet you miss hating the summer heat right now.</h1>",
           "<h1>It's so damn cold you might fart snowflakes</h1>"
         ];
@@ -83,7 +84,7 @@ $(document).ready(() => {
     var sortofhotmsg = sortofhotArray[Math.floor(Math.random() * sortofhotArray.length)];
 
     if (userFront.degree === 'C' || userFront.degree === 'c') {
-      if (userFront.idealTemp-2 <= celsius <= userFront.idealTemp+2){
+      if (userFront.idealTemp <= celsius && celsius <= userFront.idealTemp+2){
         $('#today').html(idealmsg);
         $('.user-wrapper').addClass(idealbg);
       } else if (celsius < userFront.idealTemp-2 && celsius > userFront.idealTemp-8) {
@@ -131,7 +132,7 @@ $(document).ready(() => {
 
   function getWeather() {
     const path = '/weather/' + userLocation.lat + '/' + userLocation.long;
-    
+
           $.getJSON(path, (response) => {
             weatherData = response;
             uiReady();
